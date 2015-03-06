@@ -1,0 +1,457 @@
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{7E6B7E19-D7C2-488E-95B6-ADCA2EC87B75}</ProjectGUID>
+    <SccProjectName />
+    <SccLocalPath />
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+    <PropertyGroup>
+      <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+      <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/common;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/glew-1.6.0/include;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/freeglut-2.6.0;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/glm-0.9.2.0;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/gli-0.3.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/common;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/glew-1.6.0/include;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/freeglut-2.6.0;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/glm-0.9.2.0;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/gli-0.3.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/common;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/glew-1.6.0/include;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/freeglut-2.6.0;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/glm-0.9.2.0;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/gli-0.3.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/common;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/glew-1.6.0/include;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/freeglut-2.6.0;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/glm-0.9.2.0;C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/external/gli-0.3.1.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeFiles\ALL_BUILD.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Build all projects</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'"></Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/CMakeFiles/ALL_BUILD.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\ALL_BUILD;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Build all projects</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'"></Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/CMakeFiles/ALL_BUILD.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\ALL_BUILD;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Build all projects</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'"></Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/CMakeFiles/ALL_BUILD.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\ALL_BUILD;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Build all projects</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'"></Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/CMakeFiles/ALL_BUILD.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\ALL_BUILD;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"C:\Program Files\CMake 2.8\bin\cmake.exe" "-HC:/Users/chris/Desktop/Samples Test/OpenGL4Samples" "-BC:/Users/chris/Desktop/Samples Test/OpenGL4Samples" --check-stamp-file "C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\generate.stamp"
+if errorlevel 1 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/CMakeLists.txt;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeLists.txt;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeSystem.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCCompiler.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCXXCompiler.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCPlatform.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCXXPlatform.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeRCCompiler.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCPlatform.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCXXPlatform.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindOpenGL.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\glew-1.6.0\util\FindGLEW.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\freeglut-2.6.0\util\FindFreeGLUT.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\glm-0.9.2.0\util\FindGLM.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\gli-0.3.1.0\util\FindGLI.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\generate.stamp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"C:\Program Files\CMake 2.8\bin\cmake.exe" "-HC:/Users/chris/Desktop/Samples Test/OpenGL4Samples" "-BC:/Users/chris/Desktop/Samples Test/OpenGL4Samples" --check-stamp-file "C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\generate.stamp"
+if errorlevel 1 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/CMakeLists.txt;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeLists.txt;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeSystem.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCCompiler.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCXXCompiler.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCPlatform.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCXXPlatform.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeRCCompiler.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCPlatform.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCXXPlatform.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindOpenGL.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\glew-1.6.0\util\FindGLEW.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\freeglut-2.6.0\util\FindFreeGLUT.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\glm-0.9.2.0\util\FindGLM.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\gli-0.3.1.0\util\FindGLI.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\generate.stamp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">"C:\Program Files\CMake 2.8\bin\cmake.exe" "-HC:/Users/chris/Desktop/Samples Test/OpenGL4Samples" "-BC:/Users/chris/Desktop/Samples Test/OpenGL4Samples" --check-stamp-file "C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\generate.stamp"
+if errorlevel 1 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/CMakeLists.txt;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeLists.txt;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeSystem.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCCompiler.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCXXCompiler.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCPlatform.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCXXPlatform.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeRCCompiler.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCPlatform.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCXXPlatform.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindOpenGL.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\glew-1.6.0\util\FindGLEW.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\freeglut-2.6.0\util\FindFreeGLUT.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\glm-0.9.2.0\util\FindGLM.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\gli-0.3.1.0\util\FindGLI.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\generate.stamp;%(Outputs)</Outputs>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">"C:\Program Files\CMake 2.8\bin\cmake.exe" "-HC:/Users/chris/Desktop/Samples Test/OpenGL4Samples" "-BC:/Users/chris/Desktop/Samples Test/OpenGL4Samples" --check-stamp-file "C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\generate.stamp"
+if errorlevel 1 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/CMakeLists.txt;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeLists.txt;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeSystem.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCCompiler.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCXXCompiler.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\WindowsPaths.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCPlatform.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCXXPlatform.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeRCCompiler.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\Windows-cl.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCPlatform.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\CMakeCXXPlatform.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\Platform\cl.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindOpenGL.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\FindPackageMessage.cmake;C:\Program Files\CMake 2.8\share\cmake-2.8\Modules\CMakeParseArguments.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\glew-1.6.0\util\FindGLEW.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\freeglut-2.6.0\util\FindFreeGLUT.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\glm-0.9.2.0\util\FindGLM.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\external\gli-0.3.1.0\util\FindGLI.cmake;C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">C:\Users\chris\Desktop\Samples Test\OpenGL4Samples\CMakeFiles\generate.stamp;%(Outputs)</Outputs>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CMakeFiles\ALL_BUILD" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/ZERO_CHECK.vcxproj">
+      <Project>AF5AFAFF-93DD-4EE8-AE2B-E414AC088A11</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-210-buffer-type.vcxproj">
+      <Project>A35ADDF7-8D21-44B6-99A6-0F4A28AFA623</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-210-buffer-update.vcxproj">
+      <Project>2A4F0816-C2BC-462A-9883-A2EA3DD0A720</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-210-draw-elements.vcxproj">
+      <Project>F9B0A18A-3103-418F-B975-A7C54C1550BB</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-210-draw-range.vcxproj">
+      <Project>A1C00861-EA07-4F4B-B3C4-0BA67E45E37C</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-210-query-occlusion.vcxproj">
+      <Project>9C7775FF-0C4E-4183-BF88-E4EFAF209D5D</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-210-rasterizer-viewport.vcxproj">
+      <Project>64FC4668-9A38-46D9-AC14-53DFBD683BD5</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-210-sampler-anisotropy-ext.vcxproj">
+      <Project>C7F27494-12AC-473D-ADB6-862BF24DEB55</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-210-sampler-filter.vcxproj">
+      <Project>DD965015-5585-46CC-AA32-8817CC7F0DC8</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-210-sampler-wrap.vcxproj">
+      <Project>AD662109-6F74-42F2-9F53-260099D8B607</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-210-test-scissor.vcxproj">
+      <Project>29FBA8B1-6289-44DA-AA37-BC6938BD55B3</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-210-texture-2d.vcxproj">
+      <Project>AA8E3E39-00ED-4E32-8A71-46D695538C1A</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-210-texture-compressed-ext.vcxproj">
+      <Project>AE80853F-0061-480C-8103-3A0595D5273F</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-300-fbo-multisample.vcxproj">
+      <Project>F8F50285-C625-48CA-A25A-3781B7A13305</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-300-test-alpha.vcxproj">
+      <Project>955537C5-6538-4895-B7A1-A6DCB890E3BF</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-blend-index.vcxproj">
+      <Project>E7B1CD6C-D18E-43C1-9BC0-35C97C3333E9</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-blend-rtt.vcxproj">
+      <Project>81EEDB41-1C63-48E0-8548-F73C34667A0D</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-buffer-type.vcxproj">
+      <Project>B0084A28-CE4E-42CC-A540-3D34B95ADA31</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-buffer-uniform.vcxproj">
+      <Project>D667B921-B375-42A5-9494-3E4A88AA196A</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-buffer-uniform-shared.vcxproj">
+      <Project>AE58C0A5-65A0-4DFF-9392-BCBD1476ED12</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-buffer-update.vcxproj">
+      <Project>269DBA31-4B5D-44BE-83F8-8FAB442F9080</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-draw-instanced.vcxproj">
+      <Project>615186F0-AB67-4220-90CB-A8A300D52D37</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-draw-instanced-array.vcxproj">
+      <Project>ACC5D0EE-787D-43ED-A2EE-4307F423D42C</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-draw-instanced-array-dsa-gtc.vcxproj">
+      <Project>D5588AA8-6FDB-4ADE-B77C-68CD303240B6</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-draw-multiple.vcxproj">
+      <Project>995AE0E4-F999-48EF-BF74-036C43342EC9</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-error-sampler-gather.vcxproj">
+      <Project>794D89B2-0D8E-4215-AE98-E318BD9E82F3</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-error-sampler-offset.vcxproj">
+      <Project>38EA058A-FF2C-4021-8397-668F16AE9818</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-error-vao.vcxproj">
+      <Project>954D3C0A-9DE5-47EC-8795-B1E7F1DDC767</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-fbo-blit.vcxproj">
+      <Project>307E47E7-14FD-4EE9-8D22-CD2DE820EFEE</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-fbo-layered.vcxproj">
+      <Project>4B95EABD-00AA-4963-A86F-40583FDA5AC3</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-fbo-mipmaps.vcxproj">
+      <Project>AAC01C16-BC5C-4BB3-A333-63FA6C0A7130</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-fbo-multisample.vcxproj">
+      <Project>8065C4AF-0923-4BE2-89A0-609E8B3C0B67</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-fbo-multisample-custom-resolve.vcxproj">
+      <Project>3D3F5C9C-5CD0-4687-951A-21FB20696572</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-fbo-rtt.vcxproj">
+      <Project>014749F1-FDA4-4659-8ADB-CCDA456FDC52</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-fbo-rtt-texture-array.vcxproj">
+      <Project>FC5A0154-7338-4935-9C13-5847CDF24E43</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-fbo-srgb.vcxproj">
+      <Project>C1399422-F4B7-45CA-9B68-63078CDE1321</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-glsl-discard.vcxproj">
+      <Project>AAD6DBBF-A823-4DEB-A5D4-F6F44594BEE9</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-primitive-flat-shading.vcxproj">
+      <Project>806F35D0-99A1-4BCB-AAC2-017241841F46</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-primitive-front-face.vcxproj">
+      <Project>0E5689B0-0709-447D-8EAC-69030A53A7EF</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-primitive-smooth-shading.vcxproj">
+      <Project>0E47ACEE-9527-41FF-B201-0D66B247A3A4</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-query-conditional.vcxproj">
+      <Project>52815ABA-5DD5-413C-A947-00720A35688C</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-query-occlusion.vcxproj">
+      <Project>770A8A28-C03B-4051-9205-77905504B9B9</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-query-timer.vcxproj">
+      <Project>C9919CA7-859A-4FA2-B872-8F4E9BD8C1D8</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-rasterizer-viewport.vcxproj">
+      <Project>C3F3B637-8BE0-4954-833C-E104C8CDF2C8</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-sampler-anisotropy-ext.vcxproj">
+      <Project>211D2C03-2F29-4B28-9C67-0D88F7C4DB90</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-sampler-fetch.vcxproj">
+      <Project>3FE20EC5-9019-49CB-ADDA-F55D64E17066</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-sampler-filter.vcxproj">
+      <Project>E28FFED4-AFEC-4F7A-9E91-899BF36A9D42</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-sampler-object.vcxproj">
+      <Project>231E95E2-D4E1-42BA-86DB-6BC34C076C98</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-sampler-offset.vcxproj">
+      <Project>5528DCB2-4E20-498C-8551-43558117E764</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-sampler-wrap.vcxproj">
+      <Project>2C15E160-8216-4AB5-9B21-5A1517AFA639</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-sync.vcxproj">
+      <Project>796F84B6-C4C1-477A-8966-706732B7A86D</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-test-scissor.vcxproj">
+      <Project>07C7CE40-917E-45AB-93AC-E7686366B927</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-texture-2d.vcxproj">
+      <Project>36BE9CBD-F8EA-43EE-B9EF-B9399F540434</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-texture-array.vcxproj">
+      <Project>D2B5EE5B-7BF2-47E1-B2AA-CAAA09556C47</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-texture-buffer.vcxproj">
+      <Project>EA64CE01-3E10-4152-8DAB-24F9AF7F24E0</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-texture-compressed-ext.vcxproj">
+      <Project>7B904564-453C-44B3-BFC4-9CBDC0C7ED80</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-texture-cube.vcxproj">
+      <Project>AEA15F31-987A-45F5-BCD0-0F1714D7711D</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-texture-rect.vcxproj">
+      <Project>4C7DEE51-EF56-41CD-8784-83E1A2D56002</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-texture-streaming.vcxproj">
+      <Project>CDDBBD1E-ACE3-4636-B005-313EAB66AFED</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-texture-swizzle.vcxproj">
+      <Project>11E391DE-0150-4796-903C-C1CBAE120177</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-330-transform-feedback-separated.vcxproj">
+      <Project>3EF34ABB-40D4-4D06-B4E2-92252661F00C</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-blend-rtt.vcxproj">
+      <Project>A1B56DA0-101E-4376-B8C8-C3E3774946F4</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-buffer-uniform.vcxproj">
+      <Project>1722B9B8-E39D-4EB5-8906-4A0C83CB5A40</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-buffer-uniform-shared-gtc.vcxproj">
+      <Project>93FE68ED-C47A-4095-BA5F-A3D9D0593732</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-draw-indirect.vcxproj">
+      <Project>44636115-B3CA-43B5-897F-9DFB6488435A</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-error-sampler-fetch.vcxproj">
+      <Project>3DE11DCA-F0E7-47F3-AD21-94AA6FF01837</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-fbo-layered.vcxproj">
+      <Project>201FC203-6C94-4289-9E0E-60F5733AD819</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-fbo-multisample.vcxproj">
+      <Project>ABB1CA77-984B-46A1-B757-9F6EDACC4751</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-fbo-rtt.vcxproj">
+      <Project>7F7747A7-20E8-44D6-B114-68AAF7BB4DC8</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-fbo-rtt-texture-array.vcxproj">
+      <Project>AA32BA1F-B679-4B2E-8076-7C03BCFB607A</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-primitive-instanced.vcxproj">
+      <Project>966D423E-B5E9-4054-8E76-50CD051FEE95</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-primitive-smooth-shading.vcxproj">
+      <Project>22D79195-5879-4EB5-BF24-E72C1AA7EB65</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-primitive-tessellation.vcxproj">
+      <Project>A67A3258-D6DD-4FC4-A7ED-21DE8C805883</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-program-64.vcxproj">
+      <Project>437730B3-0BFB-4B2D-BAB7-DB358D9BC36F</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-program-subroutine.vcxproj">
+      <Project>8A4CC4E2-5D64-460F-9899-1E12356B5149</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-program-varying-blocks.vcxproj">
+      <Project>E76B9FC4-EF99-47A0-8476-E92A688607A0</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-program-varying-structs.vcxproj">
+      <Project>D837C4B7-93FE-4680-BCC1-0827D626A297</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-sampler-array.vcxproj">
+      <Project>78C8B40B-001F-4E57-B82F-6DFCC17B6188</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-sampler-array-gtc.vcxproj">
+      <Project>380674B6-E674-4716-AB61-4695185A2FA5</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-sampler-fetch.vcxproj">
+      <Project>E4ABCF99-B220-4EDE-9870-9A75AC7165D8</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-sampler-gather.vcxproj">
+      <Project>C6E9EDF6-C80C-4E06-ACA7-F4182927B030</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-texture-buffer-rgb.vcxproj">
+      <Project>F8AACD99-CD35-43DA-9ECC-971E57345298</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-texture-compressed-arb.vcxproj">
+      <Project>BD3CA3EE-2965-42E7-B9DA-F8B0E83E3050</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-400-transform-feedback-object.vcxproj">
+      <Project>E175AA97-519E-4593-88C2-5C7EE2688B28</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-debug-output-arb.vcxproj">
+      <Project>9B7FB994-371F-4444-B308-B0AE65AC162B</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-fbo-layered.vcxproj">
+      <Project>C1E648E8-EF0A-497D-A5D5-25F15FEE1579</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-fbo-multisample-dsa-ext.vcxproj">
+      <Project>456AB431-2EC5-43DA-AA38-E0F07898FCA7</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-fbo-multisample-dsa-gtc.vcxproj">
+      <Project>8FB7C0B0-6453-491D-A14B-5EAC2379ED14</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-fbo-multisample-position-amd.vcxproj">
+      <Project>F8254991-FF46-4C2D-94DE-D2847F81408F</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-fbo-rtt-dsa-ext.vcxproj">
+      <Project>ACFDA430-FD4A-494F-80B3-B80D303473E5</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-primitive-bindless-nv.vcxproj">
+      <Project>1E13D40D-B427-43D3-A9B6-89AF9BDA4E17</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-primitive-instanced.vcxproj">
+      <Project>52F73FE1-0C74-4992-8C9C-66EA91320A71</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-primitive-tessellation-2.vcxproj">
+      <Project>710879D9-8743-4462-B343-91FFDF5B20D2</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-primitive-tessellation-5.vcxproj">
+      <Project>C1537758-4EC3-4199-B128-0DC32FBFC925</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-program-64.vcxproj">
+      <Project>393CBE1F-2877-46B4-BF19-20C63D6E037D</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-program-binary.vcxproj">
+      <Project>F6FA9120-EA5A-40A2-83F8-66E3D8BB24AB</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-program-separate-dsa-gtc.vcxproj">
+      <Project>EC88AAA3-E5E0-4336-9C9B-ABD9BCCB4206</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-sampler-fetch-dsa-ext.vcxproj">
+      <Project>A5E07FBE-90C1-47AA-9F66-9A9D6BFE5A09</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-texture-barrier-nv.vcxproj">
+      <Project>02964AE8-04AC-4F4C-8712-E5243202FE67</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-texture-copy-nv.vcxproj">
+      <Project>182D3E83-AA80-467F-B758-BD3285D3C7D9</Project>
+    </ProjectReference>
+    <ProjectReference Include="C:/Users/chris/Desktop/Samples Test/OpenGL4Samples/samples/ogl-410-texture-image-ext.vcxproj">
+      <Project>A43FE2A4-DD49-4CDB-BFEC-AAA8E40C0366</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
