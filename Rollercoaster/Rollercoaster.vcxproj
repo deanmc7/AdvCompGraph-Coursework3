@@ -68,13 +68,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="GlutBackend.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Rollercoaster.cpp" />
+    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="TGAloader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Callbacks.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="GlutBackend.h" />
+    <ClInclude Include="Keys.h" />
+    <ClInclude Include="Lighting.h" />
+    <ClInclude Include="Skybox.h" />
     <ClInclude Include="TGAloader.h" />
+    <ClInclude Include="TypeDefs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

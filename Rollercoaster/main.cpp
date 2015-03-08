@@ -5,19 +5,23 @@
 #include <string>
 
 #include "Geometry.h"
+#include "Camera.h"
+#include "GlutBackend.h"
+
+/*
+Camera
+Physics
+Cars
+Wheels
+Track
+Techniques (shader implementation)
+*/
 
 /* ASCII codes for various special Keys */
 #define ESCAPE 27
-#define UP_ARROW 72
-#define DOWN_ARROW 80
-#define LEFT_ARROW 75
-#define RIGHT_ARROW 77
 
-#define PI 3.1415926532L
-Geometry* geometry = new Geometry();
-
-double g_curX = 210, g_curY = -10.5, g_curZ = 290;
-double g_angle = 120;
+Geometry*	geometry = new Geometry();
+Camera*		mCamera = new Camera(210, -10.5, 290, 120);
 
 void setupLights()
 {
@@ -152,12 +156,12 @@ static void display()
 	glPushMatrix();
 		glMatrixMode(GL_MODELVIEW);
 		/* rotate camera 'g_angle' degrees about the y-axis */
-		glRotatef(g_angle, 0.0, 1.0, 0.0);
+		glRotatef(mCamera->getAngle(), 0.0, 1.0, 0.0);
 
 		/* translate (move) camera to the intitial "spawn" position, thereafter
 		moving the camera to the updated position as calculated by
 		InputKeyPressed */
-		glTranslatef(g_curX, g_curY, g_curZ);
+		glTranslatef(mCamera->getX(), mCamera->getY(), mCamera->getZ());
 		geometry->drawFloor();
 		geometry->drawTrack();
 	glPopMatrix();
@@ -204,62 +208,18 @@ void keyboardFunc(unsigned char key, int x, int y)
 }
 
 void specialKeyFunc(int key, int x, int y)
-{
-	/* switch control structure */
-	switch (key)
-	{
-		/* when the up-arrow on the keyboard is pressed */
-	case GLUT_KEY_UP:
-	{
-		double rads = g_angle / 180.0L * PI;
-		/* the smaller the number divided by the faster you glide forward */
-		double dx = -sin(rads) / 0.1;// 1.5;
-		/* the smaller the number divided by the faster you glide forward */
-		double dz = cos(rads) / 0.1;// 1.5;
+{	
+	mCamera->SpecialKeyInput(key, x, y);
 
-		g_curX += dx;
-		g_curZ += dz;
-	}
-		break;
-
-		/* when the back-arrow on the keyboard is pressed */
-	case GLUT_KEY_DOWN:
-	{
-		double rads = g_angle / 180.0L * PI;
-		/* the smaller the number divided by the faster you glide forward */
-		double dx = -sin(rads) / 0.1; //3.0;
-		/* the smaller the number divided by the faster you glide forward */
-		double dz = cos(rads) / 0.1;// 3.0;
-
-		g_curX -= dx;
-		g_curZ -= dz;
-	}
-		break;
-
-		/* when the right-arrow on the keyboard is pressed */
-	case GLUT_KEY_RIGHT:
-		g_angle += 5;
-		break;
-
-		/* when the left-arrow on the keyboard is pressed */
-	case GLUT_KEY_LEFT:
-		g_angle -= 5;
-		break;
-
-		/* when anything else is pressed */
-	default:
-		break;
-	}
 	/* sets the current window for redisplay */
 	glutPostRedisplay();
 }
 
-int main(int argc, char** argv) {
+/*int main(int argc, char** argv) {
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH); // Initialize modes
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(1220, 600);
-	glutInitWindowPosition(10, 10);
-	glutCreateWindow("Rollercoaster Program"); // Note that arg[0] is name of program (Window name)
+	glutCreateWindow("Rollercoaster");
 	Init();
 	glutDisplayFunc(display);
 	glutSpecialFunc(specialKeyFunc);
@@ -267,4 +227,4 @@ int main(int argc, char** argv) {
 	glutReshapeFunc(Reshape);
 	glutMainLoop();
 	return 0;
-}
+}*/
