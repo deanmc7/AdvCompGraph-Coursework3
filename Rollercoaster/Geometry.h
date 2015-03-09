@@ -2,6 +2,7 @@
 #define __Geometry_h_
 
 #include <GL\freeglut.h>
+
 #include "TGAloader.h"
 
 #define NUM_OF_TEXTURES 1

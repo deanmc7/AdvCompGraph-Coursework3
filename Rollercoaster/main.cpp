@@ -7,9 +7,9 @@
 #include "Geometry.h"
 #include "Camera.h"
 #include "GlutBackend.h"
+#include "Car.h"
 
 /*
-Camera
 Physics
 Cars
 Wheels
@@ -20,8 +20,9 @@ Techniques (shader implementation)
 /* ASCII codes for various special Keys */
 #define ESCAPE 27
 
-Geometry*	geometry = new Geometry();
-Camera*		mCamera = new Camera(210, -10.5, 290, 120);
+Geometry*	geometry	= new Geometry();
+Camera*		mCamera		= new Camera(210, -10.5, 290, 120);
+Car*		mCar		= new Car(6.8f, 0.005f, 100.0f, 20.0f, -9.807f, 4);
 
 void setupLights()
 {
@@ -164,6 +165,7 @@ static void display()
 		glTranslatef(mCamera->getX(), mCamera->getY(), mCamera->getZ());
 		geometry->drawFloor();
 		geometry->drawTrack();
+		mCar->Display(mCar->getCarX(), mCar->getCarY(), mCar->getCarZ());
 	glPopMatrix();
 
 	glutSwapBuffers();		      // Swap buffers
@@ -215,7 +217,7 @@ void specialKeyFunc(int key, int x, int y)
 	glutPostRedisplay();
 }
 
-/*int main(int argc, char** argv) {
+int main(int argc, char** argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(1220, 600);
@@ -227,4 +229,4 @@ void specialKeyFunc(int key, int x, int y)
 	glutReshapeFunc(Reshape);
 	glutMainLoop();
 	return 0;
-}*/
+}
