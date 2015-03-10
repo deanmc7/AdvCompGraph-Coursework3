@@ -8,11 +8,11 @@ class rPhysics
 {
 private:
 	GLfloat tHeight;
-	GLfloat tRad;
+	GLfloat tInnerRad, tOuterRad;
 	GLfloat gravity;
 	int tHills;
 public:
-	rPhysics(GLfloat trackHeight, GLfloat trackRadius, int numOfHills, GLfloat grav);
+	rPhysics(GLfloat trackHeight, GLfloat trackInnerRadius, GLfloat trackOuterRadius, int numOfHills, GLfloat grav);
 
 	GLfloat ODE(float speed, float pos);
 	GLfloat RK4(float speed, float pos);

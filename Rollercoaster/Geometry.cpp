@@ -3,9 +3,11 @@
 Geometry::Geometry(void)
 {
 	this->trackHeight = 20.0f;
-	this->trackRadius = 100.0f;
+	this->trackInnerRadius = 90.0f;
+	this->trackOuterRadius = 110.0f;
 	this->numOfHills = 4;
 	this->textureFilenames[0] = "grass.tga";
+	this->textureFilenames[1] = "track.tga";
 }
 
 bool Geometry::loadImage(char* textureName, int currentTexture)
@@ -76,13 +78,41 @@ void Geometry::buildTrack(void)
 
 			glPushMatrix();
 
-				glTranslatef(0.0, 20.0, 0.0);
-
-				glTranslatef(this->trackRadius * cos(x), this->trackHeight * sin(numOfHills * x), this->trackRadius * sin(x));
+				glTranslatef(this->trackInnerRadius * cos(x), this->trackHeight * sin(numOfHills * x), this->trackInnerRadius * sin(x));
 
 				glCallList(this->sphere);
 
 			glPopMatrix();
+
+			glPushMatrix();
+
+				glTranslatef(this->trackOuterRadius * cos(x), this->trackHeight * sin(numOfHills * x), this->trackOuterRadius * sin(x));
+
+				glCallList(this->sphere);
+
+			glPopMatrix();
+
+			glEnable(GL_TEXTURE_2D);
+			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+
+			glBindTexture(GL_TEXTURE_2D, this->textures[TRACK_TEXTURE]);
+
+			glBegin(GL_QUADS);
+				glPushMatrix();
+
+					glTexCoord2f(0.0f, 0.0f);
+					glVertex3f(trackInnerRadius*cos(x), trackHeight * sin(numOfHills*x), trackInnerRadius * sin(x));
+					glTexCoord2f(1.0f, 0.0f);
+					glVertex3f(trackOuterRadius*cos(x), trackHeight * sin(numOfHills*x), trackOuterRadius * sin(x));
+					glTexCoord2f(0.0f, 0.0f);
+					glVertex3f(trackInnerRadius*cos((x - 0.05)), trackHeight * sin(numOfHills*(x - 0.05)), trackInnerRadius * sin((x - 0.05)));
+					glTexCoord2f(1.0f, 0.0f);
+					glVertex3f(trackOuterRadius*cos((x - 0.05)), trackHeight * sin(numOfHills*(x - 0.05)), trackOuterRadius * sin((x - 0.05)));
+
+				glPopMatrix();
+			glEnd();
+
+			glDisable(GL_TEXTURE_2D);
 		}	
 	glEndList();
 }
@@ -94,18 +124,20 @@ void Geometry::drawTrack(void)
 
 void Geometry::drawFloor(void)
 {
+	glEnable(GL_TEXTURE_2D);
 	glPushMatrix();
 		glBindTexture(GL_TEXTURE_2D, this->textures[FLOOR_TEXTURE]);
 		glBegin(GL_QUADS);
 			glNormal3f(0, 1, 0);
 			glTexCoord2f(0.0, 0.0);
-			glVertex3f(-300.0, 0.0, -300.0);
+			glVertex3f(-300.0, -20.0, -300.0);
 			glTexCoord2f(0.0, 100.0);
-			glVertex3f(-300.0, 0.0, 300.0);
+			glVertex3f(-300.0, -20.0, 300.0);
 			glTexCoord2f(100.0, 100.0); //the bigger the higher the resulution
-			glVertex3f(300.0, 0.0, 300.0);
+			glVertex3f(300.0, -20.0, 300.0);
 			glTexCoord2f(100.0, 0.0);
-			glVertex3f(300.0, 0.0, -300.0);
+			glVertex3f(300.0, -20.0, -300.0);
 		glEnd();
 	glPopMatrix();
+	glDisable(GL_TEXTURE_2D);
 }

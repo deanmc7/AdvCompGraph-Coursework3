@@ -10,8 +10,6 @@
 #include "Car.h"
 
 /*
-Physics
-Cars
 Wheels
 Track
 Techniques (shader implementation)
@@ -22,7 +20,7 @@ Techniques (shader implementation)
 
 Geometry*	geometry	= new Geometry();
 Camera*		mCamera		= new Camera(210, -10.5, 290, 120);
-Car*		mCar		= new Car(6.8f, 0.005f, 100.0f, 20.0f, -9.807f, 4);
+Car*		mCar		= new Car(6.8f, 0.005f, 90.0f, 110.0f, 20.0f, -9.807f, 4);
 
 void setupLights()
 {
@@ -142,13 +140,12 @@ static void Init()
 	setTexturedMode();
 
 	geometry->buildTrack();
+
+	mCar->Init();
 }
 
 static void display()
 {
-	static double supa; // This value will be remembered each time display is called
-	supa += .005; // Increment 5 degrees each call
-
 	/* clear frame buffer and z-buffer - thus clearing the screen */
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	/* move to the center of the screen */
@@ -165,6 +162,7 @@ static void display()
 		glTranslatef(mCamera->getX(), mCamera->getY(), mCamera->getZ());
 		geometry->drawFloor();
 		geometry->drawTrack();
+		mCar->BuildCar();
 		mCar->Display(mCar->getCarX(), mCar->getCarY(), mCar->getCarZ());
 	glPopMatrix();
 
@@ -221,6 +219,7 @@ int main(int argc, char** argv) {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
 	glutInitWindowSize(1220, 600);
+	glutInitWindowPosition(10, 10);
 	glutCreateWindow("Rollercoaster");
 	Init();
 	glutDisplayFunc(display);

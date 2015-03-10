@@ -14,9 +14,10 @@ private:
 	rPhysics* physics;
 
 	GLuint cars;
+
 	GLfloat timeStep;
 	GLfloat thetaPos, thetaVel, thetaAccel;
-	GLfloat tRadius, tHeight;
+	GLfloat tInnerRadius, tOuterRadius, tHeight;
 	GLfloat grav;
 	int tHills;
 	double carX, carY, carZ;
@@ -31,19 +32,23 @@ private:
 	GLfloat	wheel_rotation;
 	float arcLength;   // used to calculate the Wheel rotation
 public:
-	Car(GLfloat carRadius, GLfloat time_step, GLfloat trackRadius, GLfloat trackHeight, GLfloat gravity, int numOfHills);
+	Car(GLfloat carRadius, GLfloat time_step, GLfloat trackInnerRadius, GLfloat trackOuterRadius, GLfloat trackHeight, GLfloat gravity, int numOfHills);
 
-	~Car();
+	~Car(void);
 
-	void Init();
+	void BuildCar(void);
+
+	void RenderCar(void);
+
+	void Init(void);
 
 	void CalculatePos(float& position, float& velocity, float& acceleration);
 
 	void Display(double x, double y, double z);
 
-	double getCarX();
-	double getCarY();
-	double getCarZ();
+	double getCarX(void);
+	double getCarY(void);
+	double getCarZ(void);
 };
 
 #endif //#ifndef __Car_h_

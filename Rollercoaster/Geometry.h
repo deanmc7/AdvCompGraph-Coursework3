@@ -5,8 +5,9 @@
 
 #include "TGAloader.h"
 
-#define NUM_OF_TEXTURES 1
+#define NUM_OF_TEXTURES 2
 #define FLOOR_TEXTURE 0
+#define TRACK_TEXTURE 1
 
 class Geometry
 {
@@ -15,7 +16,8 @@ private:
 	GLuint textures[NUM_OF_TEXTURES];
 	GLuint sphere, track;
 	GLfloat	trackHeight;
-	GLfloat trackRadius;
+	GLfloat trackInnerRadius;
+	GLfloat trackOuterRadius;
 	int numOfHills;
 
 	char* textureFilenames[NUM_OF_TEXTURES];

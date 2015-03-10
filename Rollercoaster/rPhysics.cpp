@@ -1,7 +1,7 @@
 #include "rPhysics.h"
 
-rPhysics::rPhysics(GLfloat trackHeight, GLfloat trackRadius, int numOfHills, GLfloat grav)
-	: tHeight(trackHeight), tRad(trackRadius), tHills(numOfHills), gravity(grav)
+rPhysics::rPhysics(GLfloat trackHeight, GLfloat trackInnerRadius, GLfloat trackOuterRadius, int numOfHills, GLfloat grav)
+	: tHeight(trackHeight), tInnerRad(trackInnerRadius), tOuterRad(trackOuterRadius), tHills(numOfHills), gravity(grav)
 {
 
 }
@@ -9,7 +9,7 @@ rPhysics::rPhysics(GLfloat trackHeight, GLfloat trackRadius, int numOfHills, GLf
 GLfloat rPhysics::ODE(float speed, float pos)
 {
 	int	n = tHills;
-	GLfloat R = tRad;
+	GLfloat R = tInnerRad + tOuterRad / 2;
 	GLfloat H = tHeight;
 	GLfloat g = gravity;
 
