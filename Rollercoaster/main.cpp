@@ -17,10 +17,12 @@ Techniques (shader implementation)
 
 /* ASCII codes for various special Keys */
 #define ESCAPE 27
+#define GRAVITY -9.807
 
 Geometry*	geometry	= new Geometry();
 Camera*		mCamera		= new Camera(210, -10.5, 290, 120);
-Car*		mCar		= new Car(6.8f, 0.005f, 90.0f, 110.0f, 20.0f, -9.807f, 4);
+Car*		mCar		= new Car(6.8f, 0.005f, geometry->getTrackInnerRadius(), 
+	geometry->getTrackOuterRadius(), geometry->getTrackHeight(), GRAVITY, geometry->getNumOfHills());
 
 void setupLights()
 {
@@ -119,8 +121,6 @@ static void Init()
 
 	glEnable(GL_DEPTH_TEST);
 
-	glEnable(GL_CULL_FACE);
-
 	geometry->loadTextures();
 
 	glEnable(GL_NORMALIZE);
@@ -140,6 +140,8 @@ static void Init()
 	setTexturedMode();
 
 	geometry->buildTrack();
+	geometry->buildTrackFloor();
+	geometry->buildPond();
 
 	mCar->Init();
 }
@@ -162,7 +164,11 @@ static void display()
 		glTranslatef(mCamera->getX(), mCamera->getY(), mCamera->getZ());
 		geometry->drawFloor();
 		geometry->drawTrack();
+		geometry->drawTrackFloor();
+		geometry->drawPond();
+		//geometry->drawPondBase();
 		mCar->BuildCar();
+		mCar->BuildWheel();
 		mCar->Display(mCar->getCarX(), mCar->getCarY(), mCar->getCarZ());
 	glPopMatrix();
 

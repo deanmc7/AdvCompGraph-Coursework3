@@ -37,6 +37,7 @@ public:
 	~Car(void);
 
 	void BuildCar(void);
+	void BuildWheel(void);
 
 	void RenderCar(void);
 

@@ -111,6 +111,15 @@ void Car::BuildCar(void)
 	//glEndList();
 }
 
+void Car::BuildWheel(void)
+{
+	glPushMatrix();
+		glColor3f(1.0, 0.0, 0.0);
+		glTranslatef(-5.0, 8.0, 7.0);
+		glutSolidTorus(0.5f, 1.0f, 50, 100);
+	glPopMatrix();
+}
+
 void Car::RenderCar(void)
 {
 	glCallList(this->cars);
