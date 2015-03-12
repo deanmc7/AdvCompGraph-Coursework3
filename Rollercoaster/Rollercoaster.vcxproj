@@ -37,7 +37,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)OPENGL\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)ImageMagick-6;$(SolutionDir)ImageMagick-6\Magick++;$(SolutionDir)assimp;$(SolutionDir)OPENGL\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ReferencePath>$(ReferencePath)</ReferencePath>
@@ -49,9 +49,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir)\ImageMagick-6;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -71,25 +73,27 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="Geometry.cpp" />
-    <ClCompile Include="GlutBackend.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Rollercoaster.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="rPhysics.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="TGAloader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Callbacks.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Car.h" />
     <ClInclude Include="Geometry.h" />
-    <ClInclude Include="GlutBackend.h" />
     <ClInclude Include="Keys.h" />
     <ClInclude Include="Lighting.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="rPhysics.h" />
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="TGAloader.h" />
     <ClInclude Include="TypeDefs.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="skybox.fs" />
+    <None Include="skybox.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

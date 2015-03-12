@@ -1,3 +1,4 @@
+#include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <math.h>
 #include <stdio.h>
@@ -6,8 +7,8 @@
 
 #include "Geometry.h"
 #include "Camera.h"
-#include "GlutBackend.h"
 #include "Car.h"
+#include "Skybox.h"
 
 /*
 Wheels
@@ -21,8 +22,13 @@ Techniques (shader implementation)
 
 Geometry*	geometry	= new Geometry();
 Camera*		mCamera		= new Camera(210, -10.5, 290, 120);
-Car*		mCar		= new Car(6.8f, 0.005f, geometry->getTrackInnerRadius(), 
+Car*		mCar1		= new Car(6.8f, 0.005f, geometry->getTrackInnerRadius(), 
 	geometry->getTrackOuterRadius(), geometry->getTrackHeight(), GRAVITY, geometry->getNumOfHills());
+Car*		mCar2 = new Car(6.8f, 0.005f, geometry->getTrackInnerRadius(),
+	geometry->getTrackOuterRadius(), geometry->getTrackHeight(), GRAVITY, geometry->getNumOfHills());
+Car*		mCar3 = new Car(6.8f, 0.005f, geometry->getTrackInnerRadius(),
+	geometry->getTrackOuterRadius(), geometry->getTrackHeight(), GRAVITY, geometry->getNumOfHills());
+Skybox*		mSkybox		= new Skybox(mCamera);
 
 void setupLights()
 {
@@ -122,6 +128,7 @@ static void Init()
 	glEnable(GL_DEPTH_TEST);
 
 	geometry->loadTextures();
+	mSkybox->loadTextures();
 
 	glEnable(GL_NORMALIZE);
 	/* specifies front- and back-facing polygons
@@ -143,7 +150,8 @@ static void Init()
 	geometry->buildTrackFloor();
 	geometry->buildPond();
 
-	mCar->Init();
+	mCar1->Init();
+	mCar1->BuildCar();
 }
 
 static void display()
@@ -162,14 +170,15 @@ static void display()
 		moving the camera to the updated position as calculated by
 		InputKeyPressed */
 		glTranslatef(mCamera->getX(), mCamera->getY(), mCamera->getZ());
+		mSkybox->Render();
 		geometry->drawFloor();
 		geometry->drawTrack();
 		geometry->drawTrackFloor();
 		geometry->drawPond();
 		//geometry->drawPondBase();
-		mCar->BuildCar();
-		mCar->BuildWheel();
-		mCar->Display(mCar->getCarX(), mCar->getCarY(), mCar->getCarZ());
+		mCar1->RenderCar();
+		mCar1->BuildWheel();
+		mCar1->Display(mCar1->getCarX(), mCar1->getCarY(), mCar1->getCarZ());
 	glPopMatrix();
 
 	glutSwapBuffers();		      // Swap buffers

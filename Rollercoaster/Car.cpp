@@ -25,7 +25,7 @@ void Car::BuildCar(void)
 {
 	glEnable(GL_AUTO_NORMAL);
 	glEnable(GL_NORMALIZE);
-	//glNewList(this->cars, GL_COMPILE);
+	glNewList(this->cars, GL_COMPILE);
 		//glPushMatrix();
 			glBegin(GL_QUADS);
 				glNormal3f(0.0, 1.0, 0.0);
@@ -108,7 +108,7 @@ void Car::BuildCar(void)
 				glVertex3f(-5.0, 8.0, 7.0);
 			glEnd();
 		//glPopMatrix();
-	//glEndList();
+	glEndList();
 }
 
 void Car::BuildWheel(void)
