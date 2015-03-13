@@ -37,13 +37,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)ImageMagick-6;$(SolutionDir)ImageMagick-6\Magick++;$(SolutionDir)assimp;$(SolutionDir)OPENGL\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)OPENGL\glew-1.7.0\include;$(SolutionDir)OPENGL\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ReferencePath>$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(SolutionDir)OPENGL\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)OPENGL\lib;$(SolutionDir)PENGL\glew-1.7.0\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -90,6 +90,7 @@
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="TGAloader.h" />
     <ClInclude Include="TypeDefs.h" />
+    <ClInclude Include="Utility.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="skybox.fs" />

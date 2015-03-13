@@ -9,6 +9,7 @@
 #include "Camera.h"
 #include "Car.h"
 #include "Skybox.h"
+#include "Mesh.h"
 
 /*
 Wheels
@@ -24,11 +25,13 @@ Geometry*	geometry	= new Geometry();
 Camera*		mCamera		= new Camera(210, -10.5, 290, 120);
 Car*		mCar1		= new Car(6.8f, 0.005f, geometry->getTrackInnerRadius(), 
 	geometry->getTrackOuterRadius(), geometry->getTrackHeight(), GRAVITY, geometry->getNumOfHills());
-Car*		mCar2 = new Car(6.8f, 0.005f, geometry->getTrackInnerRadius(),
+Car*		mCar2		= new Car(6.8f, 0.005f, geometry->getTrackInnerRadius(),
 	geometry->getTrackOuterRadius(), geometry->getTrackHeight(), GRAVITY, geometry->getNumOfHills());
-Car*		mCar3 = new Car(6.8f, 0.005f, geometry->getTrackInnerRadius(),
+Car*		mCar3		= new Car(6.8f, 0.005f, geometry->getTrackInnerRadius(),
 	geometry->getTrackOuterRadius(), geometry->getTrackHeight(), GRAVITY, geometry->getNumOfHills());
 Skybox*		mSkybox		= new Skybox(mCamera);
+
+Mesh*		mDesert		= new Mesh("desert.obj");
 
 void setupLights()
 {
@@ -150,6 +153,8 @@ static void Init()
 	geometry->buildTrackFloor();
 	geometry->buildPond();
 
+	
+
 	mCar1->Init();
 	mCar1->BuildCar();
 }
@@ -176,6 +181,7 @@ static void display()
 		geometry->drawTrackFloor();
 		geometry->drawPond();
 		//geometry->drawPondBase();
+		mDesert->Draw();
 		mCar1->RenderCar();
 		mCar1->BuildWheel();
 		mCar1->Display(mCar1->getCarX(), mCar1->getCarY(), mCar1->getCarZ());
