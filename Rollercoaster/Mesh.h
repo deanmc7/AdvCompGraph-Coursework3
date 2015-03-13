@@ -25,17 +25,13 @@ private:
 	glm::mat4 object2world;
 	std::vector<glm::vec4> vertices;
 	std::vector<glm::vec3> normals;
-	std::vector<GLushort> elements;
+	std::vector<int> elements;
 public:
 	Mesh(const char* pathway);
 
-	bool Load(std::vector<glm::vec4> &vertices, std::vector<glm::vec3> &normals, std::vector<GLushort> &elements);
+	bool Load(std::vector<glm::vec4> &vertices, std::vector<glm::vec3> &normals, std::vector<int> &elements);
 
 	void Draw(void);
-
-	void Upload(void);
-
-	void DrawBoundingBox(void);
 };
 
 #endif //#ifndef __Mesh_h_
