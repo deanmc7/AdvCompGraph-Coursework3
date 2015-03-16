@@ -1,37 +1,28 @@
 #ifndef __Mesh_h_
 #define __Mesh_h_
 
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <vector>
-#include <GL\glew.h>
-#include <GL\glut.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <GL\freeglut.h>
+#include "Utility.h"
+#include "Textures.h"
+#include "Shaders.h"
 
 class Mesh
 {
 private:
 	const char* pathway;
-	GLuint vboVertices, vboNormals, iboElements;
-	GLint attribute_v_coord;
-	GLint attribute_v_normal;
-	GLint uniform_m, uniform_v, uniform_p;
-	GLint uniform_m_3x3_inv_transp, uniform_v_inv;
-	glm::mat4 object2world;
-	std::vector<glm::vec4> vertices;
-	std::vector<glm::vec3> normals;
-	std::vector<int> elements;
+	Shaders		mMeshShader;
+
 public:
 	Mesh(const char* pathway);
 
-	bool Load(std::vector<glm::vec4> &vertices, std::vector<glm::vec3> &normals, std::vector<int> &elements);
+	bool Load(std::vector<glm::vec4>& vertices, std::vector<vec3>& normals, std::vector<vec2>& uvs);
 
-	void Draw(void);
+	void Draw(GLuint vertexBuffer, GLuint uvBuffer,
+		std::vector<glm::vec4>& vertices, std::vector<vec3>& normals, std::vector<vec2>& uvs);
+
+	void InitShader();
+
+	void Display(std::vector<glm::vec4>& vertices, GLuint vertexBuffer, GLuint uvBuffer, Textures* texture, int textureName,
+		std::vector<vec3>& normals, std::vector<vec2>& uvs);
 };
 
 #endif //#ifndef __Mesh_h_

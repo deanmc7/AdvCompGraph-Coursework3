@@ -2,66 +2,24 @@
 
 Skybox::Skybox(Camera* pCam) : pCamera(pCam)
 {
-	this->textureFilenames[SKYBOX_TOP]		= "skyboxTop.tga";
-	this->textureFilenames[SKYBOX_FRONT]	= "skyboxFront.tga";
-	this->textureFilenames[SKYBOX_LEFT]		= "skyboxLeft.tga";
-	this->textureFilenames[SKYBOX_RIGHT]	= "skyboxRight.tga";
-	this->textureFilenames[SKYBOX_BACK]		= "skyboxBack.tga";
 }
 
-bool Skybox::loadImage(char* textureName, int currentTexture)
+void Skybox::Init()
 {
-	/* image loading type */
-	TGAloader Img;
-
-	/* loads the texture */
-	if (Img.Load(textureName) != IMG_OK)
-		return false;
-
-	/* the texture handle is set to the current loaded texture */
-	glBindTexture(GL_TEXTURE_2D, this->textures[currentTexture]);
-
-	/* setup the texture if it is a standard solid 24bit image (no transparency) */
-	if (Img.GetBPP() == 24)
+	if (!mSkyboxShader.Load("skybox.vs", "skybox.fs"))
 	{
-		/* specifies the solid two-dimensional texture */
-		glTexImage2D(GL_TEXTURE_2D, 0, 3, Img.GetWidth(), Img.GetHeight(), 0, GL_RGB, GL_UNSIGNED_BYTE, Img.GetImg());
-	}
-	/* else setup the texture if it is a 32bit image with an alpha channel */
-	else if (Img.GetBPP() == 32)
-	{
-		/* specifies the transparent two-dimensional texture */
-		glTexImage2D(GL_TEXTURE_2D, 0, 4, Img.GetWidth(), Img.GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, Img.GetImg());
-	}
-	else
-	{
-		return false;
+		std::cout << "error loading skybox shader\n";
+		return;
 	}
 
-	/* sets the texture parameters - for reference, consult Prog 8.6's discussion */
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-	return true;
+	mSkyboxShader.UniformLocations = new GLuint[1];
+	mSkyboxShader.UniformLocations[0] = glGetUniformLocation(mSkyboxShader, "CameraPosition");
 }
 
-void Skybox::loadTextures(void)
-{
-	/* deals with the generation of texture names  */
-	glGenTextures(5, this->textures);
-
-	for (int i = 0; i < 5; i++)
-	{
-		loadImage(this->textureFilenames[i], i);
-	}
-}
-
-void Skybox::Render(void)
+void Skybox::Render(Textures* texture)
 {
 	glPushMatrix();
-
+		
 		glLoadIdentity();
 		gluLookAt(0, 0, 0,
 			pCamera->getX(), pCamera->getY(), pCamera->getZ(),
@@ -75,63 +33,76 @@ void Skybox::Render(void)
 
 		glColor4f(1, 1, 1, 1);
 
-		glBindTexture(GL_TEXTURE_2D, textures[SKYBOX_FRONT]);
+		/*glUseProgram(mSkyboxShader);
+		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);*/
+
+		glBindTexture(GL_TEXTURE_2D, texture->getTexture(SKYBOX_FRONT));
 		glBegin(GL_QUADS);
-			glTexCoord2f(0, 0);
-			glVertex3f(50.0f, -50.0f, -50.0f);
-			glTexCoord2f(1, 0);
-			glVertex3f(-50.0f, -50.0f, -50.0f);
-			glTexCoord2f(1, 1);
-			glVertex3f(-50.0f, 50.0f, -50.0f);
+		glUseProgram(mSkyboxShader);
+		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);
 			glTexCoord2f(0, 1);
+			glVertex3f(50.0f, -50.0f, -50.0f);
+			glTexCoord2f(1, 1);
+			glVertex3f(-50.0f, -50.0f, -50.0f);
+			glTexCoord2f(1, 0);
+			glVertex3f(-50.0f, 50.0f, -50.0f);
+			glTexCoord2f(0, 0);
 			glVertex3f(50.0f, 50.0f, -50.0f);
 		glEnd();
 
-		glBindTexture(GL_TEXTURE_2D, textures[SKYBOX_LEFT]);
+		glBindTexture(GL_TEXTURE_2D, texture->getTexture(SKYBOX_LEFT));
 		glBegin(GL_QUADS);
-			glTexCoord2f(0, 0);
+		glUseProgram(mSkyboxShader);
+		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);
+			glTexCoord2f(0, 1);
 			glVertex3f(50.0f, -50.0f, 50.0f);
-			glTexCoord2f(1, 0);
+			glTexCoord2f(1, 1);
 			glVertex3f(50.0f, -50.0f, -50.0f);
-			glTexCoord2f(1, 1);
+			glTexCoord2f(1, 0);
 			glVertex3f(50.0f, 50.0f, -50.0f);
-			glTexCoord2f(0, 1);
+			glTexCoord2f(0, 0);
 			glVertex3f(50.0f, 50.0f, 50.0f);
 		glEnd();
 
-		glBindTexture(GL_TEXTURE_2D, textures[SKYBOX_BACK]);
+		glBindTexture(GL_TEXTURE_2D, texture->getTexture(SKYBOX_BACK));
 		glBegin(GL_QUADS);
-			glTexCoord2f(0, 0);
+		glUseProgram(mSkyboxShader);
+		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);
+			glTexCoord2f(0, 1);
 			glVertex3f(-50.0f, -50.0f, 50.0f);
-			glTexCoord2f(1, 0);
+			glTexCoord2f(1, 1);
 			glVertex3f(50.0f, -50.0f, 50.0f);
-			glTexCoord2f(1, 1);
+			glTexCoord2f(1, 0);
 			glVertex3f(50.0f, 50.0f, 50.0f);
-			glTexCoord2f(0, 1);
+			glTexCoord2f(0, 0);
 			glVertex3f(-50.0f, 50.0f, 50.0f);
 		glEnd();
 
-		glBindTexture(GL_TEXTURE_2D, textures[SKYBOX_RIGHT]);
+		glBindTexture(GL_TEXTURE_2D, texture->getTexture(SKYBOX_RIGHT));
 		glBegin(GL_QUADS);
-			glTexCoord2f(0, 0);
+		glUseProgram(mSkyboxShader);
+		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);
+			glTexCoord2f(0, 1);
 			glVertex3f(-50.0f, -50.0f, -50.0f);
-			glTexCoord2f(1, 0);
-			glVertex3f(-50.0f, -50.0f, 50.0f);
 			glTexCoord2f(1, 1);
+			glVertex3f(-50.0f, -50.0f, 50.0f);
+			glTexCoord2f(1, 0);
 			glVertex3f(-50.0f, 50.0f, 50.0f);
-			glTexCoord2f(0, 1);
+			glTexCoord2f(0, 0);
 			glVertex3f(-50.0f, 50.0f, -50.0f);
 		glEnd();
 
-		glBindTexture(GL_TEXTURE_2D, textures[SKYBOX_TOP]);
+		glBindTexture(GL_TEXTURE_2D, texture->getTexture(SKYBOX_TOP));
 		glBegin(GL_QUADS);
-			glTexCoord2f(0, 1);
-			glVertex3f(-50.0f, 50.0f, -50.0f);
-			glTexCoord2f(0, 0);
-			glVertex3f(-50.0f, 50.0f, 50.0f);
-			glTexCoord2f(1, 0);
-			glVertex3f(50.0f, 50.0f, 50.0f);
+		glUseProgram(mSkyboxShader);
+		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);
 			glTexCoord2f(1, 1);
+			glVertex3f(-50.0f, 50.0f, -50.0f);
+			glTexCoord2f(1, 0);
+			glVertex3f(-50.0f, 50.0f, 50.0f);
+			glTexCoord2f(0, 0);
+			glVertex3f(50.0f, 50.0f, 50.0f);
+			glTexCoord2f(0, 1);
 			glVertex3f(50.0f, 50.0f, -50.0f);
 		glEnd();
 

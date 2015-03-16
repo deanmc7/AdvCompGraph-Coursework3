@@ -1,14 +1,14 @@
 #include "Car.h"
 
 Car::Car(GLfloat carRadius, GLfloat time_step, GLfloat trackInnerRadius, GLfloat trackOuterRadius, 
-	GLfloat trackHeight, GLfloat gravity, int numOfHills)
+	GLfloat trackHeight, GLfloat gravity, int numOfHills, GLfloat offset, GLfloat speed)
 	: cRadius(carRadius), timeStep(time_step), tHeight(trackHeight), tInnerRadius(trackInnerRadius), 
-	tOuterRadius(trackOuterRadius), grav(gravity), tHills(numOfHills)
+	tOuterRadius(trackOuterRadius), grav(gravity), tHills(numOfHills), carSpeed(speed), mCarMesh(nullptr)
 {
 	physics = new rPhysics(tHeight, tInnerRadius, tOuterRadius, tHills, grav);
 
-	thetaPos	= timeStep;
-	thetaVel	= timeStep * 400;
+	thetaPos	= timeStep * offset;
+	thetaVel	= timeStep * carSpeed;
 	thetaAccel	= timeStep * 40;
 
 	arcLength = 0.0;
@@ -23,92 +23,7 @@ Car::~Car(void)
 
 void Car::BuildCar(void)
 {
-	glEnable(GL_AUTO_NORMAL);
-	glEnable(GL_NORMALIZE);
-	glNewList(this->cars, GL_COMPILE);
-		//glPushMatrix();
-			glBegin(GL_QUADS);
-				glNormal3f(0.0, 1.0, 0.0);
-				glVertex3f(5.0, 8.0, -7.0);
-				glVertex3f(5.0, 8.0, 7.0);
-				glVertex3f(-20.0, 8.0, 7.0);
-				glVertex3f(-20.0, 8.0, -7.0);
-
-				glNormal3f(1.0, 0.0, 0.0);
-				glVertex3f(-20.0, 8.0, -7.0);
-				glVertex3f(-20.0, 8.0, 7.0);
-				glVertex3f(-20.0, 23.0, 7.0);
-				glVertex3f(-20.0, 23.0, -7.0);
-
-				glNormal3f(0.71, 0.71, 0.0);
-				glVertex3f(-20.0, 23.0, -7.0);
-				glVertex3f(-20.0, 23.0, 7.0);
-				glVertex3f(-17.0, 20.0, 7.0);
-				glVertex3f(-17.0, 20.0, -7.0);
-
-				glNormal3f(0.12, 0.03, 0.0);
-				glVertex3f(-17.0, 20.0, -7.0);
-				glVertex3f(-17.0, 20.0, 7.0);
-				glVertex3f(-14.0, 8.0, 7.0);
-				glVertex3f(-14.0, 8.0, -7.0);
-
-				glNormal3f(0.0, 1.0, 0.0);
-				glVertex3f(-14.0, 8.0, -7.0);
-				glVertex3f(-14.0, 8.0, 7.0);
-				glVertex3f(0.0, 8.0, 7.0);
-				glVertex3f(0.0, 8.0, -7.0);
-
-				glNormal3f(1.0, 0.0, 0.0);
-				glVertex3f(0.0, 8.0, -7.0);
-				glVertex3f(0.0, 8.0, 7.0);
-				glVertex3f(0.0, 15.0, 7.0);
-				glVertex3f(0.0, 15.0, -7.0);
-
-				glNormal3f(0.5, 0.3, 0.0);
-				glVertex3f(0.0, 15.0, -7.0);
-				glVertex3f(0.0, 15.0, 7.0);
-				glVertex3f(-5.0, 18.0, 7.0);
-				glVertex3f(-5.0, 18.0, -7.0);
-
-				glNormal3f(1.0, 0.0, 0.0);
-				glVertex3f(-5.0, 18.0, -7.0);
-				glVertex3f(-5.0, 18.0, 7.0);
-				glVertex3f(-5.0, 8.0, 7.0);
-				glVertex3f(-5.0, 8.0, -7.0);
-
-				glNormal3f(0.0, 0.0, 1.0);
-				glVertex3f(-18.0, 8.0, 7.0);
-				glVertex3f(-18.0, 13.0, 7.0);
-				glVertex3f(0.0, 13.0, 7.0);
-				glVertex3f(0.0, 8.0, 7.0);
-
-				glVertex3f(-18.0, 8.0, -7.0);
-				glVertex3f(-18.0, 16.0, -7.0);
-				glVertex3f(0.0, 14.0, -7.0);
-				glVertex3f(0.0, 8.0, -7.0);
-
-				glVertex3f(-20.0, 8.0, 7.0);
-				glVertex3f(-20.0, 23.0, 7.0);
-				glVertex3f(-17.0, 20.0, 7.0);
-				glVertex3f(-14.0, 8.0, 7.0);
-
-				glVertex3f(-20.0, 8.0, -7.0);
-				glVertex3f(-20.0, 23.0, -7.0);
-				glVertex3f(-17.0, 20.0, -7.0);
-				glVertex3f(-14.0, 8.0, -7.0);
-
-				glVertex3f(0.0, 8.0, -7.0);
-				glVertex3f(0.0, 15.0, -7.0);
-				glVertex3f(-5.0, 18.0, -7.0);
-				glVertex3f(-5.0, 8.0, -7.0);
-
-				glVertex3f(0.0, 8.0, 7.0);
-				glVertex3f(0.0, 15.0, 7.0);
-				glVertex3f(-5.0, 18.0, 7.0);
-				glVertex3f(-5.0, 8.0, 7.0);
-			glEnd();
-		//glPopMatrix();
-	glEndList();
+	
 }
 
 void Car::BuildWheel(void)
@@ -138,7 +53,7 @@ void Car::CalculatePos(float& position, float& velocity, float& acceleration)
 
 	if (acceleration <= timeStep)
 	{
-		velocity		= timeStep * 400;
+		velocity		= timeStep * carSpeed;
 		acceleration	= timeStep * 40;
 	}
 
@@ -178,6 +93,14 @@ void Car::Display(double x, double y, double z)
 	glPopMatrix();
 }
 
+void Car::swapSpeeds(GLfloat& car1Speed, GLfloat& car2Speed)
+{
+	GLfloat temp;
+	temp = car1Speed;
+	car1Speed = car2Speed;
+	car2Speed = temp;
+}
+
 double Car::getCarX(void)
 {
 	return carX;
@@ -191,4 +114,19 @@ double Car::getCarY(void)
 double Car::getCarZ(void)
 {
 	return carZ;
+}
+
+double Car::getRad(void)
+{
+	return cRadius;
+}
+
+void Car::setSpeed(GLfloat value)
+{
+	carSpeed = value;
+}
+
+GLfloat Car::getSpeed(void)
+{
+	return carSpeed;
 }

@@ -1,8 +1,7 @@
 #ifndef __rPhysics_h_
 #define __rPhysics_h_
 
-#include <GL\freeglut.h>
-#include <math.h>
+#include "Utility.h"
 
 class rPhysics
 {

@@ -1,12 +1,8 @@
 #ifndef __Camera_h_
 #define __Camera_h_
 
-#include <GL\freeglut.h>
-#include <math.h>
-
+#include "Utility.h"
 #include "Keys.h"
-
-#define PI 3.1415926532L
 
 class Camera
 {
@@ -26,6 +22,8 @@ public:
 	double getY();
 	double getZ();
 	double getAngle();
+
+	vec3 position;
 };
 
 #endif //#ifndef __Camera_h_

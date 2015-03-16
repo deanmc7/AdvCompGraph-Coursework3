@@ -8,7 +8,7 @@ Camera::Camera()
 Camera::Camera(double x, double y, double z, double angle) 
 	: camX(x), camY(y), camZ(z), camAngle(angle)
 {
-
+	position = vec3(camX, camY, camZ);
 }
 
 void Camera::Init()
@@ -26,7 +26,7 @@ bool Camera::KeyInput(KEY key)
 		/* when the up-arrow on the keyboard is pressed */
 	case KEY_UP:
 	{
-		double rads = camAngle / 180.0L * PI;
+		double rads = camAngle / 180.0L * M_PI;
 		/* the smaller the number divided by the faster you glide forward */
 		double dx = -sin(rads) / 0.1;// 1.5;
 		/* the smaller the number divided by the faster you glide forward */
@@ -42,7 +42,7 @@ bool Camera::KeyInput(KEY key)
 		/* when the back-arrow on the keyboard is pressed */
 	case KEY_DOWN:
 	{
-		double rads = camAngle / 180.0L * PI;
+		double rads = camAngle / 180.0L * M_PI;
 		/* the smaller the number divided by the faster you glide forward */
 		double dx = -sin(rads) / 0.1; //3.0;
 		/* the smaller the number divided by the faster you glide forward */
@@ -83,7 +83,7 @@ void Camera::SpecialKeyInput(int key, int x, int y)
 		/* when the up-arrow on the keyboard is pressed */
 	case GLUT_KEY_UP:
 	{
-		double rads = camAngle / 180.0L * PI;
+		double rads = camAngle / 180.0L * M_PI;
 		/* the smaller the number divided by the faster you glide forward */
 		double dx = -sin(rads) / 0.1;// 1.5;
 		/* the smaller the number divided by the faster you glide forward */
@@ -97,7 +97,7 @@ void Camera::SpecialKeyInput(int key, int x, int y)
 		/* when the back-arrow on the keyboard is pressed */
 	case GLUT_KEY_DOWN:
 	{
-		double rads = camAngle / 180.0L * PI;
+		double rads = camAngle / 180.0L * M_PI;
 		/* the smaller the number divided by the faster you glide forward */
 		double dx = -sin(rads) / 0.1; //3.0;
 		/* the smaller the number divided by the faster you glide forward */

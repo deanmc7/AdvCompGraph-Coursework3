@@ -10,28 +10,40 @@
 #include "Car.h"
 #include "Skybox.h"
 #include "Mesh.h"
+#include "Collision.h"
+#include "Utility.h"
+#include "Textures.h"
+#include "Track.h"
 
 /*
 Wheels
-Track
 Techniques (shader implementation)
 */
 
-/* ASCII codes for various special Keys */
-#define ESCAPE 27
-#define GRAVITY -9.807
-
-Geometry*	geometry	= new Geometry();
+Geometry*	mGeometry	= new Geometry();
+Textures*	mTextures	= new Textures();
+Track*		mTrack		= new Track();
 Camera*		mCamera		= new Camera(210, -10.5, 290, 120);
-Car*		mCar1		= new Car(6.8f, 0.005f, geometry->getTrackInnerRadius(), 
-	geometry->getTrackOuterRadius(), geometry->getTrackHeight(), GRAVITY, geometry->getNumOfHills());
-Car*		mCar2		= new Car(6.8f, 0.005f, geometry->getTrackInnerRadius(),
-	geometry->getTrackOuterRadius(), geometry->getTrackHeight(), GRAVITY, geometry->getNumOfHills());
-Car*		mCar3		= new Car(6.8f, 0.005f, geometry->getTrackInnerRadius(),
-	geometry->getTrackOuterRadius(), geometry->getTrackHeight(), GRAVITY, geometry->getNumOfHills());
+
+Car*		mCar1		= new Car(6.8f, 0.005f, mTrack->getTrackInnerRadius(),
+	mTrack->getTrackOuterRadius(), mTrack->getTrackHeight(), GRAVITY, mTrack->getNumOfHills(), 1.0f, CAR1SPEED);
+
+Car*		mCar2		= new Car(10.0f, 0.005f, mTrack->getTrackInnerRadius(),
+	mTrack->getTrackOuterRadius(), mTrack->getTrackHeight(), GRAVITY, mTrack->getNumOfHills(), 100.0f, CAR2SPEED);
+
+Car*		mCar3		= new Car(4.0f, 0.005f, mTrack->getTrackInnerRadius(),
+	mTrack->getTrackOuterRadius(), mTrack->getTrackHeight(), GRAVITY, mTrack->getNumOfHills(), 200.0f, CAR3SPEED);
+
 Skybox*		mSkybox		= new Skybox(mCamera);
 
-Mesh*		mDesert		= new Mesh("desert.obj");
+Collision*	mCollision	= new Collision();
+
+std::vector<glm::vec4> vertices;
+std::vector<vec3> normals;
+std::vector<vec2> uvs;
+GLuint vertexBuffer;
+GLuint uvBuffer;
+Mesh* mDesert			= new Mesh("desert.obj");
 
 void setupLights()
 {
@@ -130,8 +142,7 @@ static void Init()
 
 	glEnable(GL_DEPTH_TEST);
 
-	geometry->loadTextures();
-	mSkybox->loadTextures();
+	mTextures->loadTextures();
 
 	glEnable(GL_NORMALIZE);
 	/* specifies front- and back-facing polygons
@@ -148,15 +159,21 @@ static void Init()
 	turnLightsOn();
 
 	setTexturedMode();
-
-	geometry->buildTrack();
-	geometry->buildTrackFloor();
-	geometry->buildPond();
-
 	
+	mDesert->Load(vertices, normals, uvs);
+	mDesert->InitShader();
+	//mDesert->Draw(vertexBuffer, uvBuffer, vertices, normals, uvs);
 
 	mCar1->Init();
 	mCar1->BuildCar();
+
+	mCar2->Init();
+	mCar2->BuildCar();
+
+	mCar3->Init();
+	mCar3->BuildCar();
+
+	mSkybox->Init();
 }
 
 static void display()
@@ -175,16 +192,72 @@ static void display()
 		moving the camera to the updated position as calculated by
 		InputKeyPressed */
 		glTranslatef(mCamera->getX(), mCamera->getY(), mCamera->getZ());
-		mSkybox->Render();
-		geometry->drawFloor();
-		geometry->drawTrack();
-		geometry->drawTrackFloor();
-		geometry->drawPond();
-		//geometry->drawPondBase();
-		mDesert->Draw();
+		
+		mSkybox->Render(mTextures);
+		
+		mTrack->buildTrack();
+		mTrack->buildTrackFloor(mTextures);
+		
+		//mGeometry->drawFloor(mTextures);
+
 		mCar1->RenderCar();
 		mCar1->BuildWheel();
 		mCar1->Display(mCar1->getCarX(), mCar1->getCarY(), mCar1->getCarZ());
+		
+		mCar2->RenderCar();
+		mCar2->BuildWheel();
+		mCar2->Display(mCar2->getCarX(), mCar2->getCarY(), mCar2->getCarZ());
+		
+		mCar3->RenderCar();
+		mCar3->BuildWheel();
+		mCar3->Display(mCar3->getCarX(), mCar3->getCarY(), mCar3->getCarZ());
+		
+		Collision::Point car1Centre(mCar1->getCarX(), mCar1->getCarY(), mCar1->getCarZ());
+		Collision::Point car1HalfWidth(mCar1->getRad(), mCar1->getRad(), mCar1->getRad());
+		Collision::AABB car1AABB(car1Centre, car1HalfWidth);
+		
+		Collision::Point car2Centre(mCar2->getCarX(), mCar2->getCarY(), mCar2->getCarZ());
+		Collision::Point car2HalfWidth(mCar2->getRad(), mCar2->getRad(), mCar2->getRad());
+		Collision::AABB car2AABB(car2Centre, car2HalfWidth);
+		
+		Collision::Point car3Centre(mCar3->getCarX(), mCar3->getCarY(), mCar3->getCarZ());
+		Collision::Point car3HalfWidth(mCar3->getRad(), mCar3->getRad(), mCar3->getRad());
+		Collision::AABB car3AABB(car3Centre, car3HalfWidth);
+		
+		if (mCollision->checkCollision(car1AABB, car2AABB))
+		{
+			std::cout << "HIT car 1 and 2\n";
+			GLfloat temp1, temp2;
+			temp1 = mCar1->getSpeed();
+			temp2 = mCar2->getSpeed();
+			mCar1->swapSpeeds(temp1, temp2);
+			mCar1->setSpeed(temp1);
+			mCar2->setSpeed(temp2);
+		}
+
+		if (mCollision->checkCollision(car1AABB, car3AABB))
+		{
+			std::cout << "HIT car 1 and 3\n";
+			GLfloat temp1, temp2;
+			temp1 = mCar1->getSpeed();
+			temp2 = mCar3->getSpeed();
+			mCar1->swapSpeeds(temp1, temp2);
+			mCar1->setSpeed(temp1);
+			mCar3->setSpeed(temp2);
+		}
+
+		if (mCollision->checkCollision(car2AABB, car3AABB))
+		{
+			std::cout << "HIT car 2 and 3\n";
+			GLfloat temp1, temp2;
+			temp1 = mCar2->getSpeed();
+			temp2 = mCar3->getSpeed();
+			mCar2->swapSpeeds(temp1, temp2);
+			mCar2->setSpeed(temp1);
+			mCar3->setSpeed(temp2);
+		}
+		glTranslatef(0.0f, -200.0f, 0.0f);
+		mDesert->Display(vertices, vertexBuffer, uvBuffer, mTextures, DESERT_TEXTURE, normals, uvs);
 	glPopMatrix();
 
 	glutSwapBuffers();		      // Swap buffers
@@ -242,8 +315,10 @@ int main(int argc, char** argv) {
 	glutInitWindowSize(1220, 600);
 	glutInitWindowPosition(10, 10);
 	glutCreateWindow("Rollercoaster");
+	glewInit();
 	Init();
 	glutDisplayFunc(display);
+	glutIdleFunc(display);
 	glutSpecialFunc(specialKeyFunc);
 	glutKeyboardFunc(keyboardFunc);	// Set the callback function for key presses
 	glutReshapeFunc(Reshape);

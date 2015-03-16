@@ -1,17 +1,16 @@
 #ifndef __Car_h_
 #define __Car_h_
 
-#include <GL\freeglut.h>
-#include <math.h>
-
 #include "rPhysics.h"
-
-#define M_PI       3.14159265358979323846
+#include "Utility.h"
+#include "Mesh.h"
 
 class Car
 {
 private:
 	rPhysics* physics;
+
+	Mesh* mCarMesh;
 
 	GLuint cars;
 
@@ -19,6 +18,7 @@ private:
 	GLfloat thetaPos, thetaVel, thetaAccel;
 	GLfloat tInnerRadius, tOuterRadius, tHeight;
 	GLfloat grav;
+	GLfloat carSpeed;
 	int tHills;
 	double carX, carY, carZ;
 	GLfloat cRadius;
@@ -32,7 +32,8 @@ private:
 	GLfloat	wheel_rotation;
 	float arcLength;   // used to calculate the Wheel rotation
 public:
-	Car(GLfloat carRadius, GLfloat time_step, GLfloat trackInnerRadius, GLfloat trackOuterRadius, GLfloat trackHeight, GLfloat gravity, int numOfHills);
+	Car(GLfloat carRadius, GLfloat time_step, GLfloat trackInnerRadius, GLfloat trackOuterRadius, GLfloat trackHeight, 
+		GLfloat gravity, int numOfHills, GLfloat offset, GLfloat speed);
 
 	~Car(void);
 
@@ -47,9 +48,14 @@ public:
 
 	void Display(double x, double y, double z);
 
+	void swapSpeeds(GLfloat& car1Speed, GLfloat& car2Speed);
+
 	double getCarX(void);
 	double getCarY(void);
 	double getCarZ(void);
+	double getRad(void);
+	void setSpeed(GLfloat value);
+	GLfloat getSpeed(void);
 };
 
 #endif //#ifndef __Car_h_

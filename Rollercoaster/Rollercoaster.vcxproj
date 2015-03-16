@@ -45,6 +45,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>$(SolutionDir)OPENGL\lib;$(SolutionDir)PENGL\glew-1.7.0\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(SolutionDir)OPENGL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)OPENGL\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -72,29 +76,40 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Math3d.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="rPhysics.cpp" />
+    <ClCompile Include="Shaders.cpp" />
     <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="Textures.cpp" />
     <ClCompile Include="TGAloader.cpp" />
+    <ClCompile Include="Track.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Car.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="Keys.h" />
     <ClInclude Include="Lighting.h" />
+    <ClInclude Include="Math3d.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="rPhysics.h" />
+    <ClInclude Include="Shaders.h" />
     <ClInclude Include="Skybox.h" />
+    <ClInclude Include="Textures.h" />
     <ClInclude Include="TGAloader.h" />
-    <ClInclude Include="TypeDefs.h" />
+    <ClInclude Include="Track.h" />
     <ClInclude Include="Utility.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="skybox.fs" />
     <None Include="skybox.vs" />
+    <None Include="TextureFragmentShader.fs" />
+    <None Include="TransformVertexShader.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
