@@ -4,15 +4,28 @@
 #include "rPhysics.h"
 #include "Utility.h"
 #include "Mesh.h"
+#include "Textures.h"
+#include "Wheel.h"
+
+class Wheel;
 
 class Car
 {
 private:
 	rPhysics* physics;
+	Textures* texture;
+	Wheel* wheelFL;
+	Wheel* wheelFR;
+	Wheel* wheelRL;
+	Wheel* wheelRR;
+	Mesh* meshLoader;
+	std::vector<glm::vec4> vertices;
+	std::vector<vec3> normals;
+	std::vector<vec2> uvs;
+	GLuint vertexBuffer;
+	GLuint uvBuffer;
 
-	Mesh* mCarMesh;
-
-	GLuint cars;
+	int carMesh;
 
 	GLfloat timeStep;
 	GLfloat thetaPos, thetaVel, thetaAccel;
@@ -33,7 +46,7 @@ private:
 	float arcLength;   // used to calculate the Wheel rotation
 public:
 	Car(GLfloat carRadius, GLfloat time_step, GLfloat trackInnerRadius, GLfloat trackOuterRadius, GLfloat trackHeight, 
-		GLfloat gravity, int numOfHills, GLfloat offset, GLfloat speed);
+		GLfloat gravity, int numOfHills, GLfloat offset, GLfloat speed, Textures* mTexture);
 
 	~Car(void);
 

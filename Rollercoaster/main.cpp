@@ -26,24 +26,33 @@ Track*		mTrack		= new Track();
 Camera*		mCamera		= new Camera(210, -10.5, 290, 120);
 
 Car*		mCar1		= new Car(6.8f, 0.005f, mTrack->getTrackInnerRadius(),
-	mTrack->getTrackOuterRadius(), mTrack->getTrackHeight(), GRAVITY, mTrack->getNumOfHills(), 1.0f, CAR1SPEED);
+	mTrack->getTrackOuterRadius(), mTrack->getTrackHeight(), GRAVITY, mTrack->getNumOfHills(), 1.0f, CAR1SPEED, mTextures);
 
 Car*		mCar2		= new Car(10.0f, 0.005f, mTrack->getTrackInnerRadius(),
-	mTrack->getTrackOuterRadius(), mTrack->getTrackHeight(), GRAVITY, mTrack->getNumOfHills(), 100.0f, CAR2SPEED);
+	mTrack->getTrackOuterRadius(), mTrack->getTrackHeight(), GRAVITY, mTrack->getNumOfHills(), 100.0f, CAR2SPEED, mTextures);
 
 Car*		mCar3		= new Car(4.0f, 0.005f, mTrack->getTrackInnerRadius(),
-	mTrack->getTrackOuterRadius(), mTrack->getTrackHeight(), GRAVITY, mTrack->getNumOfHills(), 200.0f, CAR3SPEED);
+	mTrack->getTrackOuterRadius(), mTrack->getTrackHeight(), GRAVITY, mTrack->getNumOfHills(), 200.0f, CAR3SPEED, mTextures);
 
 Skybox*		mSkybox		= new Skybox(mCamera);
 
 Collision*	mCollision	= new Collision();
-
-std::vector<glm::vec4> vertices;
-std::vector<vec3> normals;
-std::vector<vec2> uvs;
-GLuint vertexBuffer;
-GLuint uvBuffer;
+Mesh*		mMeshLoader = new Mesh();
+/*std::vector<glm::vec4> dVertices;
+std::vector<vec3> dNormals;
+std::vector<vec2> dUvs;
+GLuint dVertexBuffer;
+GLuint dUvBuffer;
 Mesh* mDesert			= new Mesh("desert.obj");
+
+/*std::vector<glm::vec4> cVertices;
+std::vector<vec3> cNormals;
+std::vector<vec2> cUvs;
+GLuint cVertexBuffer;
+GLuint cUvBuffer;
+Mesh* mCastle = new Mesh("castle.obj");*/
+
+int mDesert, mCastle;
 
 void setupLights()
 {
@@ -160,9 +169,14 @@ static void Init()
 
 	setTexturedMode();
 	
-	mDesert->Load(vertices, normals, uvs);
+	/*mDesert->Load(dVertices, dNormals, dUvs);
 	mDesert->InitShader();
+	mCastle->Load(cVertices, cNormals, cUvs);
+	mCastle->InitShader();*/
 	//mDesert->Draw(vertexBuffer, uvBuffer, vertices, normals, uvs);
+
+	mDesert = mMeshLoader->Load("desert.obj");
+	//mCastle = mMeshLoader->Load("castle.obj");
 
 	mCar1->Init();
 	mCar1->BuildCar();
@@ -194,34 +208,32 @@ static void display()
 		glTranslatef(mCamera->getX(), mCamera->getY(), mCamera->getZ());
 		
 		mSkybox->Render(mTextures);
-		
-		mTrack->buildTrack();
-		mTrack->buildTrackFloor(mTextures);
-		
+		glPushMatrix();
+			glTranslatef(0.0, 6.0, 0.0);
+			mTrack->buildTrack();
+			mTrack->buildTrackFloor(mTextures);
+		glPopMatrix();
 		//mGeometry->drawFloor(mTextures);
-
-		mCar1->RenderCar();
-		mCar1->BuildWheel();
+		
+		//mCar1->RenderCar();
 		mCar1->Display(mCar1->getCarX(), mCar1->getCarY(), mCar1->getCarZ());
 		
-		mCar2->RenderCar();
-		mCar2->BuildWheel();
+		//mCar2->RenderCar();
 		mCar2->Display(mCar2->getCarX(), mCar2->getCarY(), mCar2->getCarZ());
 		
-		mCar3->RenderCar();
-		mCar3->BuildWheel();
+		//mCar3->RenderCar();
 		mCar3->Display(mCar3->getCarX(), mCar3->getCarY(), mCar3->getCarZ());
 		
 		Collision::Point car1Centre(mCar1->getCarX(), mCar1->getCarY(), mCar1->getCarZ());
-		Collision::Point car1HalfWidth(mCar1->getRad(), mCar1->getRad(), mCar1->getRad());
+		Collision::Point car1HalfWidth(5.375, 6.8, 6.8);
 		Collision::AABB car1AABB(car1Centre, car1HalfWidth);
 		
 		Collision::Point car2Centre(mCar2->getCarX(), mCar2->getCarY(), mCar2->getCarZ());
-		Collision::Point car2HalfWidth(mCar2->getRad(), mCar2->getRad(), mCar2->getRad());
+		Collision::Point car2HalfWidth(5.375, 6.8, 6.8);
 		Collision::AABB car2AABB(car2Centre, car2HalfWidth);
 		
 		Collision::Point car3Centre(mCar3->getCarX(), mCar3->getCarY(), mCar3->getCarZ());
-		Collision::Point car3HalfWidth(mCar3->getRad(), mCar3->getRad(), mCar3->getRad());
+		Collision::Point car3HalfWidth(5.375, 6.8, 6.8);
 		Collision::AABB car3AABB(car3Centre, car3HalfWidth);
 		
 		if (mCollision->checkCollision(car1AABB, car2AABB))
@@ -256,8 +268,11 @@ static void display()
 			mCar2->setSpeed(temp1);
 			mCar3->setSpeed(temp2);
 		}
+		//mCastle->Display(cVertices, cVertexBuffer, cUvBuffer, mTextures, DESERT_TEXTURE, cNormals, cUvs);
+		//glCallList(mCastle);
 		glTranslatef(0.0f, -200.0f, 0.0f);
-		mDesert->Display(vertices, vertexBuffer, uvBuffer, mTextures, DESERT_TEXTURE, normals, uvs);
+		//mDesert->Display(dVertices, dVertexBuffer, dUvBuffer, mTextures, DESERT_TEXTURE, dNormals, dUvs);
+		glCallList(mDesert);
 	glPopMatrix();
 
 	glutSwapBuffers();		      // Swap buffers

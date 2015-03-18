@@ -1,11 +1,17 @@
 #include "Car.h"
 
-Car::Car(GLfloat carRadius, GLfloat time_step, GLfloat trackInnerRadius, GLfloat trackOuterRadius, 
-	GLfloat trackHeight, GLfloat gravity, int numOfHills, GLfloat offset, GLfloat speed)
-	: cRadius(carRadius), timeStep(time_step), tHeight(trackHeight), tInnerRadius(trackInnerRadius), 
-	tOuterRadius(trackOuterRadius), grav(gravity), tHills(numOfHills), carSpeed(speed), mCarMesh(nullptr)
+Car::Car(GLfloat carRadius, GLfloat time_step, GLfloat trackInnerRadius, GLfloat trackOuterRadius,
+	GLfloat trackHeight, GLfloat gravity, int numOfHills, GLfloat offset, GLfloat speed, Textures* mTexture)
+	: cRadius(carRadius), timeStep(time_step), tHeight(trackHeight), tInnerRadius(trackInnerRadius),
+	tOuterRadius(trackOuterRadius), grav(gravity), tHills(numOfHills), carSpeed(speed), carMesh(0)
 {
 	physics = new rPhysics(tHeight, tInnerRadius, tOuterRadius, tHills, grav);
+	texture = mTexture;
+	meshLoader = new Mesh();
+	wheelFL = new Wheel(mTexture);
+	wheelFR = new Wheel(mTexture);
+	wheelRL = new Wheel(mTexture);
+	wheelRR = new Wheel(mTexture);
 
 	thetaPos	= timeStep * offset;
 	thetaVel	= timeStep * carSpeed;
@@ -23,21 +29,18 @@ Car::~Car(void)
 
 void Car::BuildCar(void)
 {
-	
+	carMesh = meshLoader->Load("cart.obj");
 }
 
 void Car::BuildWheel(void)
 {
-	glPushMatrix();
-		glColor3f(1.0, 0.0, 0.0);
-		glTranslatef(-5.0, 8.0, 7.0);
-		glutSolidTorus(0.5f, 1.0f, 50, 100);
-	glPopMatrix();
+	return;
 }
 
 void Car::RenderCar(void)
 {
-	glCallList(this->cars);
+	//mCarMesh->Display(vertices, vertexBuffer, uvBuffer, texture, CART_TEXTURE, normals, uvs);
+	glCallList(carMesh);
 }
 
 void Car::Init(void)
@@ -72,7 +75,7 @@ void Car::Display(double x, double y, double z)
 	CalculatePos(thetaPos, thetaVel, thetaAccel);
 	this->Init();
 	glPushMatrix();
-		glTranslatef(x, y, z);
+	/*	glTranslatef(x, y, z);
 		glColor3f(1.0, 1.0, 0.0);
 		glRotatef((-thetaPos*rad_to_deg) - 90, 0, 1, 0);
 		glRotatef((cos(tHills*thetaPos)*10.0f), 0.0, 0.0, 1.0);
@@ -89,7 +92,18 @@ void Car::Display(double x, double y, double z)
 		// turn the wheels by
 		wheel_rotation = -percentage * 360.0f;  //WHEEL ROTATION ANGLE
 		glRotatef(wheel_rotation, 0.0, 0.0, 1.0); //Apply wheel rotation
-		glutWireTorus(cRadius / 2, cRadius, 50, 100);
+		glutWireTorus(cRadius / 2, cRadius, 50, 100);*/
+		glTranslatef(x, y, z);
+		glRotatef((-thetaPos*rad_to_deg) - 90, 0, 1, 0);
+		glRotatef((cos(tHills*thetaPos)*10.0f), 0.0, 0.0, 1.0);
+		this->RenderCar();
+		wheelFL->Update(x, y, z, 9.8725f, 1.725875f, 7.274125f, thetaPos, tHills, tHeight);
+		//glTranslatef(-38.389f, 13.807f, 58.193f);
+		wheelRL->Update(x, y, z, -4.798625f, 1.725875f, 7.274125f, thetaPos, tHills, tHeight);
+		//glTranslatef(78.249f, 13.807f, -58.081f);
+		wheelFR->Update(x, y, z, 9.781125f, 1.725875f, -7.260125f, thetaPos, tHills, tHeight);
+		//glTranslatef(-40.153f, 13.807f, -58.094f);
+		wheelRR->Update(x, y, z, -5.019125f, 1.725875f, -7.26175f, thetaPos, tHills, tHeight);
 	glPopMatrix();
 }
 

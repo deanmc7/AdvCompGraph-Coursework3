@@ -10,6 +10,8 @@ Textures::Textures()
 	this->textureFilenames[SKYBOX_RIGHT] = "skyboxRight.tga";
 	this->textureFilenames[SKYBOX_BACK] = "skyboxBack.tga";
 	this->textureFilenames[DESERT_TEXTURE] = "desert.tga";
+	this->textureFilenames[CART_TEXTURE] = "cart.tga";
+	//this->textureFilenames[WHEEL_TEXTURE] = "wheel.tga";
 }
 
 bool Textures::loadImage(char* textureName, int currentTexture)

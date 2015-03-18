@@ -37,17 +37,17 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)OPENGL\glew-1.7.0\include;$(SolutionDir)OPENGL\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\OPENGL\include;$(SolutionDir)OPENGL\glew-1.7.0\include;$(SolutionDir)OPENGL\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ReferencePath>$(ReferencePath)</ReferencePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(SolutionDir)OPENGL\lib;$(SolutionDir)PENGL\glew-1.7.0\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\OPENGL\lib\unicode;$(SolutionDir)\OPENGL\lib;$(SolutionDir)PENGL\glew-1.7.0\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)OPENGL\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)OPENGL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\OPENGL\include;$(SolutionDir)OPENGL\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\OPENGL\lib\unicode;$(SolutionDir)\OPENGL\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -57,7 +57,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>DevIL.lib;ILU.lib;ILUT.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -71,6 +71,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>DevIL.lib;ILU.lib;ILUT.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -87,6 +88,7 @@
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="TGAloader.cpp" />
     <ClCompile Include="Track.cpp" />
+    <ClCompile Include="Wheel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -104,6 +106,7 @@
     <ClInclude Include="TGAloader.h" />
     <ClInclude Include="Track.h" />
     <ClInclude Include="Utility.h" />
+    <ClInclude Include="Wheel.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="skybox.fs" />
