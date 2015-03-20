@@ -15,7 +15,7 @@ GLfloat rPhysics::ODE(float speed, float pos)
 
 	GLfloat numerator	= (float)(((n*n*n)*(H*H)*(speed * speed)*sin(n*pos) - n*g*H)*cos(n*pos));
 	GLfloat denominator = (float)((R*R) + (n*n)*(H*H)*((cos(n*pos))*(cos(n*pos))));
-
+	std::cout << numerator << std::endl << denominator << std::endl;
 	return (numerator / denominator);
 }
 
@@ -34,9 +34,9 @@ GLfloat rPhysics::RK4(float speed, float pos)
 	k3 = ODE(speed + k2 / 2, pos + j2 / 2);
 	j3 = speed + k3;
 
-	k4 = ODE(speed + k3 / 2, pos + j3 / 2);
+	k4 = ODE(speed + k3, pos + speed + k3);
 
-	acceleration = (1 / 6) * (k1 + (2 * k2) + k4);
+	acceleration = (1 / 6) * (k1 + (2 * k2) + (2 * k3) + k4);
 
 	return (acceleration);
 }

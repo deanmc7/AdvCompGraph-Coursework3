@@ -435,7 +435,7 @@ int Mesh::Load(const char* filename)
 			glEnd();
 		}
 	}
-	glDisable(GL_TEXTURE_2D);
+	
 	glEndList();
 	clean();
 	lists.push_back(num);

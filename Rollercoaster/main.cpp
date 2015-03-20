@@ -60,7 +60,7 @@ static void Init()
 
 	mLighting->TurnLightsOn();
 
-	//mLighting->InitShaders();
+	mLighting->InitShaders();
 	
 
 	setTexturedMode();
@@ -103,19 +103,17 @@ static void display()
 		mLighting->Display();
 		mSkybox->Render(mTextures);
 
-		glPushMatrix();
-			mGeometry->drawCreature();
-			glTranslatef(0.0f, -150.0f, 0.0f);
-				mGeometry->drawTerrain();
-			glTranslatef(0.0f, 150.0f, 0.0f);
-		glPopMatrix();
+		mGeometry->drawCreature();
+		glTranslatef(0.0f, -150.0f, 0.0f);
+		mGeometry->drawTerrain();
+		glTranslatef(0.0f, 150.0f, 0.0f);
 
-		glPushMatrix();
-			glTranslatef(0.0, 6.0, 0.0);
-			mTrack->buildTrack();
-			mTrack->buildTrackFloor(mTextures);
-			glTranslatef(0.0, -6.0, 0.0);
-		glPopMatrix();
+
+		glTranslatef(0.0, 6.0, 0.0);
+		mTrack->buildTrack();
+		mTrack->buildTrackFloor(mTextures);
+		glTranslatef(0.0, -6.0, 0.0);
+		
 
 		mCar1->Display(mCar1->getCarX(), mCar1->getCarY(), mCar1->getCarZ());
 

@@ -53,13 +53,14 @@ void Lighting::InitShaders(void)
 		glUniform3fv(lightingShader, 1, lightDirection);
 	}
 
-	glUseProgram(lightingShader);
-	glUniform3fv(lightingShader, 1, lightDirection);
+	
 }
 
 void Lighting::Display(void)
 {
-	
+	glUseProgram(lightingShader);
+	glUniform3fv(lightingShader, 1, lightDirection);
+	glUseProgram(0);
 }
 
 void Lighting::UseShader(void)
