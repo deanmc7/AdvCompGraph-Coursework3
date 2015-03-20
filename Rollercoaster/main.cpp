@@ -69,7 +69,7 @@ static void Init()
 
 	mSkybox->Init();
 
-	//mGeometry->Init();
+	mGeometry->Init();
 
 	mCar1->Init();
 	mCar1->BuildCar();
@@ -103,12 +103,12 @@ static void display()
 		mLighting->Display();
 		mSkybox->Render(mTextures);
 
-		/*glPushMatrix();
+		glPushMatrix();
 			mGeometry->drawCreature();
 			glTranslatef(0.0f, -150.0f, 0.0f);
 				mGeometry->drawTerrain();
 			glTranslatef(0.0f, 150.0f, 0.0f);
-		glPopMatrix();*/
+		glPopMatrix();
 
 		glPushMatrix();
 			glTranslatef(0.0, 6.0, 0.0);
