@@ -139,8 +139,9 @@ int Mesh::Load(const char* filename)
 	}
 	}
 	}*/
-
-	printf("Loading OBJ file....\n", filename);
+	std::string name = filename;
+	//printf("Loading OBJ file...." + name + "\n", filename);
+	std::cout << "Loading OBJ file... " + name + "\n";
 	istexture = false;
 
 	std::ifstream in(filename);
@@ -434,6 +435,7 @@ int Mesh::Load(const char* filename)
 			glEnd();
 		}
 	}
+	glDisable(GL_TEXTURE_2D);
 	glEndList();
 	clean();
 	lists.push_back(num);

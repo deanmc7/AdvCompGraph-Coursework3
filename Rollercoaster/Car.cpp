@@ -8,10 +8,10 @@ Car::Car(GLfloat carRadius, GLfloat time_step, GLfloat trackInnerRadius, GLfloat
 	physics = new rPhysics(tHeight, tInnerRadius, tOuterRadius, tHills, grav);
 	texture = mTexture;
 	meshLoader = new Mesh();
-	wheelFL = new Wheel(mTexture);
-	wheelFR = new Wheel(mTexture);
-	wheelRL = new Wheel(mTexture);
-	wheelRR = new Wheel(mTexture);
+	wheelFL = new Wheel();
+	wheelFR = new Wheel();
+	wheelRL = new Wheel();
+	wheelRR = new Wheel();
 
 	thetaPos	= timeStep * offset;
 	thetaVel	= timeStep * carSpeed;
@@ -34,7 +34,10 @@ void Car::BuildCar(void)
 
 void Car::BuildWheel(void)
 {
-	return;
+	wheelFL->BuildWheel();
+	wheelFR->BuildWheel();
+	wheelRL->BuildWheel();
+	wheelRR->BuildWheel();
 }
 
 void Car::RenderCar(void)
@@ -97,13 +100,13 @@ void Car::Display(double x, double y, double z)
 		glRotatef((-thetaPos*rad_to_deg) - 90, 0, 1, 0);
 		glRotatef((cos(tHills*thetaPos)*10.0f), 0.0, 0.0, 1.0);
 		this->RenderCar();
-		wheelFL->Update(x, y, z, 9.8725f, 1.725875f, 7.274125f, thetaPos, tHills, tHeight);
+		wheelFL->Update(x, y, z, 9.054f, 2.511f, 7.286f, thetaPos, tHills, tHeight);
 		//glTranslatef(-38.389f, 13.807f, 58.193f);
-		wheelRL->Update(x, y, z, -4.798625f, 1.725875f, 7.274125f, thetaPos, tHills, tHeight);
+		wheelRL->Update(x, y, z, -4.692f, 2.511f, 7.286f, thetaPos, tHills, tHeight);
 		//glTranslatef(78.249f, 13.807f, -58.081f);
-		wheelFR->Update(x, y, z, 9.781125f, 1.725875f, -7.260125f, thetaPos, tHills, tHeight);
+		wheelFR->Update(x, y, z, 9.054f, 2.511f, -7.505f, thetaPos, tHills, tHeight);
 		//glTranslatef(-40.153f, 13.807f, -58.094f);
-		wheelRR->Update(x, y, z, -5.019125f, 1.725875f, -7.26175f, thetaPos, tHills, tHeight);
+		wheelRR->Update(x, y, z, -4.659f, 2.511f, -7.505f, thetaPos, tHills, tHeight);
 	glPopMatrix();
 }
 

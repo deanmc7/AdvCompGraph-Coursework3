@@ -57,7 +57,6 @@ bool Shaders::Load(char* vertexFilename, char* fragmentFilename)
 	return true;
 }
 
-
 GLuint Shaders::LoadShader(char* filename, GLuint type)
 {
 	GLchar* shaderText = NULL;

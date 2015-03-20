@@ -79,6 +79,7 @@
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="Lighting.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Math3d.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -109,6 +110,8 @@
     <ClInclude Include="Wheel.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="diffuse.fs" />
+    <None Include="diffuse.vs" />
     <None Include="skybox.fs" />
     <None Include="skybox.vs" />
     <None Include="TextureFragmentShader.fs" />

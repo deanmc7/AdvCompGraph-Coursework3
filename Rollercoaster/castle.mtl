@@ -1,106 +1,66 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# File Created: 18.03.2015 01:14:52
+# File Created: 18.03.2015 23:19:46
 
-newmtl Stones_Limestone
-Ns 0.0000
+newmtl Towels
+Ns 9.0000
 Ni 1.5000
 d 1.0000
 Tr 0.0000
 Tf 1.0000 1.0000 1.0000 
 illum 2
-Ka 0.4471 0.4471 0.4471
-Kd 0.4471 0.4471 0.4471
-Ks 0.0000 0.0000 0.0000
+Ka 0.5880 0.5880 0.5880
+Kd 0.5880 0.5880 0.5880
+Ks 0.6570 0.6570 0.6570
 Ke 0.0000 0.0000 0.0000
-map_Kd Limesto1.jpg
+map_Kd C:\Users\Dean\Documents\GitHub\AdvCompGraph-Coursework3\Media\Hogwarts3Ds delete\Textures\brick_diffuse.jpg
 
-newmtl Concrete_Brown_Stucco
-Ns 0.0000
-Ni 1.5000
-d 1.0000
-Tr 0.0000
-Tf 1.0000 1.0000 1.0000 
-illum 2
-Ka 0.1000 0.1000 0.1000
-Kd 0.5000 0.5000 0.5000
-Ks 0.0000 0.0000 0.0000
-Ke 0.0000 0.0000 0.0000
-map_Kd Stucco8.jpg
-
-newmtl Bricks_Yellow
-Ns 0.0000
-Ni 1.5000
-d 1.0000
-Tr 0.0000
-Tf 1.0000 1.0000 1.0000 
-illum 2
-Ka 0.1000 0.1000 0.1000
-Kd 0.5000 0.5000 0.5000
-Ks 0.0000 0.0000 0.0000
-Ke 0.0000 0.0000 0.0000
-map_Kd Yellobrk.JPG
-
-newmtl Stones_Travertn
-Ns 0.0000
-Ni 1.5000
-d 1.0000
-Tr 0.0000
-Tf 1.0000 1.0000 1.0000 
-illum 2
-Ka 0.4471 0.4471 0.4471
-Kd 0.4471 0.4471 0.4471
-Ks 0.0000 0.0000 0.0000
-Ke 0.0000 0.0000 0.0000
-map_Kd Travertn.tga
-
-newmtl Stones_Balmoral
-Ns 0.0000
-Ni 1.5000
-d 1.0000
-Tr 0.0000
-Tf 1.0000 1.0000 1.0000 
-illum 2
-Ka 0.5294 0.2353 0.2353
-Kd 0.5294 0.2353 0.2353
-Ks 0.0000 0.0000 0.0000
-Ke 0.0000 0.0000 0.0000
-map_Kd Balmoral.jpg
-
-newmtl Wood_Shingle
-Ns 0.0000
-Ni 1.5000
-d 1.0000
-Tr 0.0000
-Tf 1.0000 1.0000 1.0000 
-illum 2
-Ka 0.1791 0.0654 0.0654
-Kd 0.7059 0.5882 0.4392
-Ks 0.0000 0.0000 0.0000
-Ke 0.0000 0.0000 0.0000
-map_Kd Tutshngl.jpg
-
-newmtl Marble_Travetine4
+newmtl Coronets
 Ns 10.0000
-Ni 1.0000
+Ni 1.5000
 d 1.0000
 Tr 0.0000
 Tf 1.0000 1.0000 1.0000 
 illum 2
-Ka 0.7569 0.7961 0.5843
-Kd 0.5608 0.6784 0.7059
-Ks 0.0548 0.0475 0.0304
+Ka 0.5882 0.5882 0.5882
+Kd 0.5882 0.5882 0.5882
+Ks 0.0000 0.0000 0.0000
 Ke 0.0000 0.0000 0.0000
-map_Kd gravurax21x.jpg
+map_Kd C:\Users\Dean\Documents\GitHub\AdvCompGraph-Coursework3\Media\Hogwarts3Ds delete\Textures\square_tiles_yellow_diffuse.jpg
 
-newmtl Green_Bronze
-Ns 68.0000
-Ni 1.0000
+newmtl Sticks
+Ns 10.0000
+Ni 1.5000
+d 0.8500
+Tr 0.1500
+Tf 0.8500 0.8500 0.8500 
+illum 2
+Ka 0.8902 0.8941 0.4471
+Kd 0.8902 0.8941 0.4471
+Ks 0.0000 0.0000 0.0000
+Ke 0.8902 0.8941 0.4471
+
+newmtl Walls
+Ns 17.0000
+Ni 1.5000
 d 1.0000
 Tr 0.0000
 Tf 1.0000 1.0000 1.0000 
 illum 2
-Ka 0.0471 0.1333 0.0196
-Kd 0.1490 0.4353 0.0627
-Ks 0.4068 0.4004 0.3939
+Ka 0.5882 0.5882 0.5882
+Kd 0.5882 0.5882 0.5882
+Ks 0.8280 0.8280 0.8280
 Ke 0.0000 0.0000 0.0000
-map_Kd bronze.jpg
+map_Kd C:\Users\Dean\Documents\GitHub\AdvCompGraph-Coursework3\Media\Hogwarts3Ds delete\Textures\brick_diffuse.jpg
+
+newmtl Cilindrer
+Ns 10.0000
+Ni 1.5000
+d 1.0000
+Tr 0.0000
+Tf 1.0000 1.0000 1.0000 
+illum 2
+Ka 0.5882 0.5882 0.5882
+Kd 0.5882 0.5882 0.5882
+Ks 0.0000 0.0000 0.0000
+Ke 0.0000 0.0000 0.0000
+map_Kd C:\Users\Dean\Documents\GitHub\AdvCompGraph-Coursework3\Media\Hogwarts3Ds delete\Textures\stone_tile_black_diffuse.jpg

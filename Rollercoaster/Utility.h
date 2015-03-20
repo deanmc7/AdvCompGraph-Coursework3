@@ -8,6 +8,7 @@
 #include <list>
 #include <vector>
 #include <math.h>
+#include "Math3d.h"
 #include <algorithm>
 #include <cstdio>
 #include <GL\glew.h>

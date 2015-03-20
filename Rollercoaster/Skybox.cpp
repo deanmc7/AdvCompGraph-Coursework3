@@ -106,6 +106,7 @@ void Skybox::Render(Textures* texture)
 			glVertex3f(50.0f, 50.0f, -50.0f);
 		glEnd();
 
-	glPopAttrib();
+		glDisable(GL_TEXTURE_2D);
+		glPopAttrib();
 	glPopMatrix();
 }

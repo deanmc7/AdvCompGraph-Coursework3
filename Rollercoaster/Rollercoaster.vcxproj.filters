@@ -57,6 +57,9 @@
     <ClCompile Include="Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Lighting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Geometry.h">
@@ -119,6 +122,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="TransformVertexShader.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="diffuse.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="diffuse.vs">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

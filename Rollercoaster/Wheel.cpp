@@ -1,22 +1,19 @@
 #include "Wheel.h"
 
-Wheel::Wheel(Textures* mTexture) : wheelMesh(0)
+Wheel::Wheel() : wheelMesh(0)
 {
-	texture = mTexture;
 	meshLoader = new Mesh();
-
+	wRadius = 2.6f;
 	arcLength = 0.0;
 	wheel_rotation = 0.0;
 	rad_to_deg = 57.2957795;
-
-	this->BuildWheel();
 }
 
-int Wheel::BuildWheel(void)
+void Wheel::BuildWheel(void)
 {
 	//mWheelMesh->Load(vertices, normals, uvs);
 	//mWheelMesh->InitShader();
-	return wheelMesh = meshLoader->Load("wheel.obj");
+	wheelMesh = meshLoader->Load("wheel.obj");
 }
 
 void Wheel::RenderWheel()
@@ -33,7 +30,7 @@ void Wheel::Update(double x, double y, double z, double offsetX, double offsetY,
 		//glTranslatef(x, y, z);
 		//glRotatef((-thetaPos*rad_to_deg) - 90, 0, 1, 0);
 		//glRotatef((cos(hills*thetaPos)*10.0f), 0.0, 0.0, 1.0);
-		CAR_WHEEL_RADIUS = cRadius;  //WILL HAVE TO BE CHANGE WHEN YOU USE YOUR OWN TRAIN AND WHEELS
+		CAR_WHEEL_RADIUS = wRadius;  //WILL HAVE TO BE CHANGE WHEN YOU USE YOUR OWN TRAIN AND WHEELS
 		// Calculate the arclength distance covered for the change in theta
 		arcLength = ((tHeight * hills * cos(hills * thetaPos)) * (tHeight * hills * cos(hills * thetaPos))) + 1.0f;
 		// The arclength calculation is an integration, therefore we must

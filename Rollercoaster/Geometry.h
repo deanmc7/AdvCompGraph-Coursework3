@@ -4,15 +4,21 @@
 #include "Utility.h"
 #include "TGAloader.h"
 #include "Textures.h"
+#include "Mesh.h"
 
 class Geometry
 {
 private:
+	Mesh*		mMeshLoader;
+	int mDesert, mCreature;
 
 public:
 	Geometry(void);
 	
-	void drawFloor(Textures* texture);
+	void Init(void);
+
+	void drawTerrain(void);
+	void drawCreature(void);
 };
 
 #endif //#ifndef __Geometry_h_

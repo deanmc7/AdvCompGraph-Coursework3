@@ -1,10 +1,3 @@
-#include <GL/glew.h>
-#include <GL/freeglut.h>
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string>
-
 #include "Geometry.h"
 #include "Camera.h"
 #include "Car.h"
@@ -14,61 +7,27 @@
 #include "Utility.h"
 #include "Textures.h"
 #include "Track.h"
-
-/*
-Wheels
-Techniques (shader implementation)
-*/
+#include "Lighting.h"
 
 Geometry*	mGeometry	= new Geometry();
 Textures*	mTextures	= new Textures();
 Track*		mTrack		= new Track();
 Camera*		mCamera		= new Camera(210, -10.5, 290, 120);
 
-Car*		mCar1		= new Car(6.8f, 0.005f, mTrack->getTrackInnerRadius(),
+Car*		mCar1		= new Car(2.6f, 0.005f, mTrack->getTrackInnerRadius(),
 	mTrack->getTrackOuterRadius(), mTrack->getTrackHeight(), GRAVITY, mTrack->getNumOfHills(), 1.0f, CAR1SPEED, mTextures);
 
-Car*		mCar2		= new Car(10.0f, 0.005f, mTrack->getTrackInnerRadius(),
+Car*		mCar2		= new Car(2.6f, 0.005f, mTrack->getTrackInnerRadius(),
 	mTrack->getTrackOuterRadius(), mTrack->getTrackHeight(), GRAVITY, mTrack->getNumOfHills(), 100.0f, CAR2SPEED, mTextures);
 
-Car*		mCar3		= new Car(4.0f, 0.005f, mTrack->getTrackInnerRadius(),
+Car*		mCar3		= new Car(2.6f, 0.005f, mTrack->getTrackInnerRadius(),
 	mTrack->getTrackOuterRadius(), mTrack->getTrackHeight(), GRAVITY, mTrack->getNumOfHills(), 200.0f, CAR3SPEED, mTextures);
 
 Skybox*		mSkybox		= new Skybox(mCamera);
 
 Collision*	mCollision	= new Collision();
-Mesh*		mMeshLoader = new Mesh();
-/*std::vector<glm::vec4> dVertices;
-std::vector<vec3> dNormals;
-std::vector<vec2> dUvs;
-GLuint dVertexBuffer;
-GLuint dUvBuffer;
-Mesh* mDesert			= new Mesh("desert.obj");
 
-/*std::vector<glm::vec4> cVertices;
-std::vector<vec3> cNormals;
-std::vector<vec2> cUvs;
-GLuint cVertexBuffer;
-GLuint cUvBuffer;
-Mesh* mCastle = new Mesh("castle.obj");*/
-
-int mDesert, mCastle;
-
-void setupLights()
-{
-	/* ambient RGBA reflectance of the material */
-	float materialAmbience[] = { 0.5, 0.5, 0.5, 1.0 };
-	/* ambient RGBA intensity of entire scene */
-	float sceneAmbience[] = { 0.7, 0.7, 0.7, 1.0 };
-
-	/* specify lighting model parameters
-	- GL_LIGHT_MODEL_AMBIENT: specify ambient RGBA intensity of entire scene*/
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, sceneAmbience);
-	/* specify material parameters for lighting model
-	- GL_FRONT_AND_BACK: front and back faces are being updated
-	- GL_AMBIENT: update all the ambient faces */
-	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, materialAmbience);
-}
+Lighting*	mLighting	= new Lighting();
 
 void setTexturedMode()
 {
@@ -79,79 +38,13 @@ void setTexturedMode()
 		fprintf(stderr, "Texture enabling failed.\n");
 }
 
-void turnLightsOff()
-{
-	glDisable(GL_LIGHTING);
-}
-
-void turnLightsOn()
-{
-	glEnable(GL_LIGHTING);
-}
-
-void setSmoothShadeModel()
-{
-	glEnable(GL_LIGHTING);
-	glShadeModel(GL_SMOOTH);
-}
-
-void setFlatShadeModel()
-{
-	glEnable(GL_LIGHTING);
-	glShadeModel(GL_FLAT);
-}
-
-void activateLight()
-{
-	glEnable(GL_LIGHT0);
-}
-
-void setupLightDirection()
-{
-	float lightDirection[] = { sin(0.0) * 100.0, 60.0, cos(0.0) * 100.0, 0.0 };
-	glLightfv(GL_LIGHT0, GL_POSITION, lightDirection);
-}
-
-void SwitchToOrtho()
-{
-	/* specifies the Projection matrix as the current matrix */
-	glMatrixMode(GL_PROJECTION);
-	/* pushes current matrix stack down by one */
-	glPushMatrix();
-	/* move to the center of the screen */
-	glLoadIdentity();
-	/* define a 2-D orthographic projection matrix */
-	gluOrtho2D(0, 1024, 0, 768);
-	/* scales along the x, -y, and z axes */
-	glScalef(1, -1, 1);
-	/* moves along the x, y and z-axis, moves -'768' units (down) on y-
-	axis */
-	glTranslatef(0, -1.0 * 768, 0);
-	/* specifies the Modelview matrix as the current matrix */
-	glMatrixMode(GL_MODELVIEW);
-	/* move to the center of the screen */
-	glLoadIdentity();
-}
-
-void SwitchFromOrtho()
-{
-	/* specifies the Projection matrix as the current matrix */
-	glMatrixMode(GL_PROJECTION);
-	/* pops current matrix stack */
-	glPopMatrix();
-	/* specifies the Modelview matrix as the current matrix */
-	glMatrixMode(GL_MODELVIEW);
-}
-
 static void Init()
 {
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 
-	setSmoothShadeModel();
+	mLighting->SetSmoothShadeModel();
 
 	glEnable(GL_DEPTH_TEST);
-
-	mTextures->loadTextures();
 
 	glEnable(GL_NORMALIZE);
 	/* specifies front- and back-facing polygons
@@ -161,33 +54,34 @@ static void Init()
 	/* specifies whether front- or back-faces are to be culled */
 	glCullFace(GL_BACK);
 
-	activateLight();
+	mLighting->ActivateLight();
 
-	setupLights();
+	mLighting->SetUpLighting();
 
-	turnLightsOn();
+	mLighting->TurnLightsOn();
+
+	//mLighting->InitShaders();
+	
 
 	setTexturedMode();
-	
-	/*mDesert->Load(dVertices, dNormals, dUvs);
-	mDesert->InitShader();
-	mCastle->Load(cVertices, cNormals, cUvs);
-	mCastle->InitShader();*/
-	//mDesert->Draw(vertexBuffer, uvBuffer, vertices, normals, uvs);
 
-	mDesert = mMeshLoader->Load("desert.obj");
-	//mCastle = mMeshLoader->Load("castle.obj");
+	mTextures->loadTextures();
+
+	mSkybox->Init();
+
+	//mGeometry->Init();
 
 	mCar1->Init();
 	mCar1->BuildCar();
+	mCar1->BuildWheel();
 
 	mCar2->Init();
 	mCar2->BuildCar();
+	mCar2->BuildWheel();
 
 	mCar3->Init();
 	mCar3->BuildCar();
-
-	mSkybox->Init();
+	mCar3->BuildWheel();
 }
 
 static void display()
@@ -206,22 +100,27 @@ static void display()
 		moving the camera to the updated position as calculated by
 		InputKeyPressed */
 		glTranslatef(mCamera->getX(), mCamera->getY(), mCamera->getZ());
-		
+		mLighting->Display();
 		mSkybox->Render(mTextures);
+
+		/*glPushMatrix();
+			mGeometry->drawCreature();
+			glTranslatef(0.0f, -150.0f, 0.0f);
+				mGeometry->drawTerrain();
+			glTranslatef(0.0f, 150.0f, 0.0f);
+		glPopMatrix();*/
+
 		glPushMatrix();
 			glTranslatef(0.0, 6.0, 0.0);
 			mTrack->buildTrack();
 			mTrack->buildTrackFloor(mTextures);
+			glTranslatef(0.0, -6.0, 0.0);
 		glPopMatrix();
-		//mGeometry->drawFloor(mTextures);
-		
-		//mCar1->RenderCar();
+
 		mCar1->Display(mCar1->getCarX(), mCar1->getCarY(), mCar1->getCarZ());
-		
-		//mCar2->RenderCar();
+
 		mCar2->Display(mCar2->getCarX(), mCar2->getCarY(), mCar2->getCarZ());
-		
-		//mCar3->RenderCar();
+
 		mCar3->Display(mCar3->getCarX(), mCar3->getCarY(), mCar3->getCarZ());
 		
 		Collision::Point car1Centre(mCar1->getCarX(), mCar1->getCarY(), mCar1->getCarZ());
@@ -268,16 +167,12 @@ static void display()
 			mCar2->setSpeed(temp1);
 			mCar3->setSpeed(temp2);
 		}
-		//mCastle->Display(cVertices, cVertexBuffer, cUvBuffer, mTextures, DESERT_TEXTURE, cNormals, cUvs);
-		//glCallList(mCastle);
-		glTranslatef(0.0f, -200.0f, 0.0f);
-		//mDesert->Display(dVertices, dVertexBuffer, dUvBuffer, mTextures, DESERT_TEXTURE, dNormals, dUvs);
-		glCallList(mDesert);
-	glPopMatrix();
 
-	glutSwapBuffers();		      // Swap buffers
-	glutPostRedisplay();		      // Display results
-	glFlush();			      // Flush drawing routines
+	glPopMatrix();
+	mLighting->UseShader();
+	glutSwapBuffers();		// Swap buffers
+	glutPostRedisplay();	// Display results
+	glFlush();				// Flush drawing routines
 }
 
 static void Reshape(int width, int height)

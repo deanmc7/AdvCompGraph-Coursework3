@@ -11,19 +11,11 @@ class Wheel
 {
 private:
 	rPhysics* physics;
-	Textures* texture;
 
 	Mesh* meshLoader;
 	int wheelMesh;
-	std::vector<glm::vec4> vertices;
-	std::vector<vec3> normals;
-	std::vector<vec2> uvs;
-	GLuint vertexBuffer;
-	GLuint uvBuffer;
 
-	double carX, carY, carZ;
-	GLfloat cRadius;
-	
+	GLfloat wRadius;
 	float rad_to_deg;
 
 	//TO BE USED FOR WHEEL ROTATION
@@ -33,11 +25,11 @@ private:
 	GLfloat	wheel_rotation;
 	float arcLength;   // used to calculate the Wheel rotation
 public:
-	Wheel(Textures* mTexture);
+	Wheel();
 
-	int BuildWheel(void);
+	void BuildWheel(void);
 
-	void RenderWheel();
+	void RenderWheel(void);
 
 	void Update(double x, double y, double z, double offsetX, double offsetY, double offsetZ, GLfloat thetaPos, int hills, GLfloat tHeight);
 };
