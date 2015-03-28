@@ -12,7 +12,7 @@ Ka 0.5880 0.5880 0.5880
 Kd 0.5880 0.5880 0.5880
 Ks 0.6570 0.6570 0.6570
 Ke 0.0000 0.0000 0.0000
-map_Kd C:\Users\Dean\Documents\GitHub\AdvCompGraph-Coursework3\Media\Hogwarts3Ds delete\Textures\brick_diffuse.jpg
+map_Kd brick_diffuse.jpg
 
 newmtl Coronets
 Ns 10.0000
@@ -25,7 +25,7 @@ Ka 0.5882 0.5882 0.5882
 Kd 0.5882 0.5882 0.5882
 Ks 0.0000 0.0000 0.0000
 Ke 0.0000 0.0000 0.0000
-map_Kd C:\Users\Dean\Documents\GitHub\AdvCompGraph-Coursework3\Media\Hogwarts3Ds delete\Textures\square_tiles_yellow_diffuse.jpg
+map_Kd square_tiles_yellow_diffuse.jpg
 
 newmtl Sticks
 Ns 10.0000
@@ -50,7 +50,7 @@ Ka 0.5882 0.5882 0.5882
 Kd 0.5882 0.5882 0.5882
 Ks 0.8280 0.8280 0.8280
 Ke 0.0000 0.0000 0.0000
-map_Kd C:\Users\Dean\Documents\GitHub\AdvCompGraph-Coursework3\Media\Hogwarts3Ds delete\Textures\brick_diffuse.jpg
+map_Kd brick_diffuse.jpg
 
 newmtl Cilindrer
 Ns 10.0000
@@ -63,4 +63,4 @@ Ka 0.5882 0.5882 0.5882
 Kd 0.5882 0.5882 0.5882
 Ks 0.0000 0.0000 0.0000
 Ke 0.0000 0.0000 0.0000
-map_Kd C:\Users\Dean\Documents\GitHub\AdvCompGraph-Coursework3\Media\Hogwarts3Ds delete\Textures\stone_tile_black_diffuse.jpg
+map_Kd stone_tile_black_diffuse.jpg
