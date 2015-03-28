@@ -15,7 +15,6 @@ GLfloat rPhysics::ODE(float speed, float pos)
 
 	GLfloat numerator	= (float)(((n*n*n)*(H*H)*(speed * speed)*sin(n*pos) - n*g*H)*cos(n*pos));
 	GLfloat denominator = (float)((R*R) + (n*n)*(H*H)*((cos(n*pos))*(cos(n*pos))));
-	std::cout << numerator << std::endl << denominator << std::endl;
 	return (numerator / denominator);
 }
 

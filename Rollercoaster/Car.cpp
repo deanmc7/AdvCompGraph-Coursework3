@@ -1,8 +1,8 @@
 #include "Car.h"
 
-Car::Car(GLfloat carRadius, GLfloat time_step, GLfloat trackInnerRadius, GLfloat trackOuterRadius,
+Car::Car(GLfloat trackOffset, GLfloat time_step, GLfloat trackInnerRadius, GLfloat trackOuterRadius,
 	GLfloat trackHeight, GLfloat gravity, int numOfHills, GLfloat offset, GLfloat speed, Textures* mTexture)
-	: cRadius(carRadius), timeStep(time_step), tHeight(trackHeight), tInnerRadius(trackInnerRadius),
+	: heightOffset(trackOffset), timeStep(time_step), tHeight(trackHeight), tInnerRadius(trackInnerRadius),
 	tOuterRadius(trackOuterRadius), grav(gravity), tHills(numOfHills), carSpeed(speed), carMesh(0)
 {
 	physics = new rPhysics(tHeight, tInnerRadius, tOuterRadius, tHills, grav);
@@ -22,17 +22,17 @@ Car::Car(GLfloat carRadius, GLfloat time_step, GLfloat trackInnerRadius, GLfloat
 	rad_to_deg = 57.2957795;
 }
 
-Car::~Car(void)
+Car::~Car()
 {
 
 }
 
-void Car::BuildCar(void)
+void Car::BuildCar()
 {
 	carMesh = meshLoader->Load("cart.obj");
 }
 
-void Car::BuildWheel(void)
+void Car::BuildWheel()
 {
 	wheelFL->BuildWheel();
 	wheelFR->BuildWheel();
@@ -40,16 +40,16 @@ void Car::BuildWheel(void)
 	wheelRR->BuildWheel();
 }
 
-void Car::RenderCar(void)
+void Car::RenderCar()
 {
 	//mCarMesh->Display(vertices, vertexBuffer, uvBuffer, texture, CART_TEXTURE, normals, uvs);
 	glCallList(carMesh);
 }
 
-void Car::Init(void)
+void Car::Init()
 {
 	carX = ((tInnerRadius + tOuterRadius) / 2) * cos(thetaPos);
-	carY = tHeight * sin(tHills * thetaPos) + cRadius;
+	carY = tHeight * sin(tHills * thetaPos) + heightOffset;
 	carZ = ((tInnerRadius + tOuterRadius) / 2) * sin(thetaPos);
 }
 
@@ -82,7 +82,7 @@ void Car::Display(double x, double y, double z)
 		glColor3f(1.0, 1.0, 0.0);
 		glRotatef((-thetaPos*rad_to_deg) - 90, 0, 1, 0);
 		glRotatef((cos(tHills*thetaPos)*10.0f), 0.0, 0.0, 1.0);
-		CAR_WHEEL_RADIUS = cRadius;  //WILL HAVE TO BE CHANGE WHEN YOU USE YOUR OWN TRAIN AND WHEELS
+		CAR_WHEEL_RADIUS = heightOffset;  //WILL HAVE TO BE CHANGE WHEN YOU USE YOUR OWN TRAIN AND WHEELS
 		// Calculate the arclength distance covered for the change in theta
 		arcLength = ((tHeight * tHills * cos(tHills * thetaPos)) * (tHeight * tHills * cos(tHills * thetaPos))) + 1.0f;
 		// The arclength calculation is an integration, therefore we must
@@ -95,10 +95,11 @@ void Car::Display(double x, double y, double z)
 		// turn the wheels by
 		wheel_rotation = -percentage * 360.0f;  //WHEEL ROTATION ANGLE
 		glRotatef(wheel_rotation, 0.0, 0.0, 1.0); //Apply wheel rotation
-		glutWireTorus(cRadius / 2, cRadius, 50, 100);*/
+		glutWireTorus(heightOffset / 2, heightOffset, 50, 100);*/
 		glTranslatef(x, y, z);
-		glRotatef((-thetaPos*rad_to_deg) - 90, 0, 1, 0);
-		glRotatef((cos(tHills*thetaPos)*10.0f), 0.0, 0.0, 1.0);
+		yaw = (-thetaPos*rad_to_deg) - 90;
+		glRotatef(yaw, 0, 1, 0);
+		glRotatef((cos(tHills*thetaPos)*25.0f), 0.0, 0.0, 1.0);
 		this->RenderCar();
 		wheelFL->Update(x, y, z, 9.054f, 2.511f, 7.286f, thetaPos, tHills, tHeight);
 		//glTranslatef(-38.389f, 13.807f, 58.193f);
@@ -118,24 +119,29 @@ void Car::swapSpeeds(GLfloat& car1Speed, GLfloat& car2Speed)
 	car2Speed = temp;
 }
 
-double Car::getCarX(void)
+double Car::getCarX()
 {
 	return carX;
 }
 
-double Car::getCarY(void)
+double Car::getCarY()
 {
 	return carY;
 }
 
-double Car::getCarZ(void)
+double Car::getCarZ()
 {
 	return carZ;
 }
 
-double Car::getRad(void)
+double Car::getRad()
 {
-	return cRadius;
+	return heightOffset;
+}
+
+float Car::getYaw()
+{
+	return yaw;
 }
 
 void Car::setSpeed(GLfloat value)
@@ -143,7 +149,7 @@ void Car::setSpeed(GLfloat value)
 	carSpeed = value;
 }
 
-GLfloat Car::getSpeed(void)
+GLfloat Car::getSpeed()
 {
 	return carSpeed;
 }

@@ -12,15 +12,15 @@
 Geometry*	mGeometry	= new Geometry();
 Textures*	mTextures	= new Textures();
 Track*		mTrack		= new Track();
-Camera*		mCamera		= new Camera(210, -10.5, 290, 120);
+Camera*		mCamera		= new Camera(0, 10, 150, 0);
 
-Car*		mCar1		= new Car(2.6f, 0.005f, mTrack->getTrackInnerRadius(),
+Car*		mCar1 = new Car(0.0f, 0.005f, mTrack->getTrackInnerRadius(),
 	mTrack->getTrackOuterRadius(), mTrack->getTrackHeight(), GRAVITY, mTrack->getNumOfHills(), 1.0f, CAR1SPEED, mTextures);
 
-Car*		mCar2		= new Car(2.6f, 0.005f, mTrack->getTrackInnerRadius(),
+Car*		mCar2 = new Car(0.0f, 0.005f, mTrack->getTrackInnerRadius(),
 	mTrack->getTrackOuterRadius(), mTrack->getTrackHeight(), GRAVITY, mTrack->getNumOfHills(), 100.0f, CAR2SPEED, mTextures);
 
-Car*		mCar3		= new Car(2.6f, 0.005f, mTrack->getTrackInnerRadius(),
+Car*		mCar3 = new Car(0.0f, 0.005f, mTrack->getTrackInnerRadius(),
 	mTrack->getTrackOuterRadius(), mTrack->getTrackHeight(), GRAVITY, mTrack->getNumOfHills(), 200.0f, CAR3SPEED, mTextures);
 
 Skybox*		mSkybox		= new Skybox(mCamera);
@@ -28,6 +28,8 @@ Skybox*		mSkybox		= new Skybox(mCamera);
 Collision*	mCollision	= new Collision();
 
 Lighting*	mLighting	= new Lighting();
+
+int follow = 0;
 
 void setTexturedMode()
 {
@@ -62,7 +64,6 @@ static void Init()
 
 	mLighting->InitShaders();
 	
-
 	setTexturedMode();
 
 	mTextures->loadTextures();
@@ -89,48 +90,41 @@ static void display()
 	/* clear frame buffer and z-buffer - thus clearing the screen */
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	/* move to the center of the screen */
-	glLoadIdentity();
-
+	//glLoadIdentity();
 	glPushMatrix();
-		glMatrixMode(GL_MODELVIEW);
-		/* rotate camera 'g_angle' degrees about the y-axis */
-		glRotatef(mCamera->getAngle(), 0.0, 1.0, 0.0);
-
-		/* translate (move) camera to the intitial "spawn" position, thereafter
-		moving the camera to the updated position as calculated by
-		InputKeyPressed */
-		glTranslatef(mCamera->getX(), mCamera->getY(), mCamera->getZ());
+		//glRotatef(mCamera->getAngle(), 0.0, 1.0, 0.0);
 		mLighting->Display();
 		mSkybox->Render(mTextures);
-
-		mGeometry->drawCreature();
-		glTranslatef(0.0f, -150.0f, 0.0f);
-		mGeometry->drawTerrain();
-		glTranslatef(0.0f, 150.0f, 0.0f);
-
-
-		glTranslatef(0.0, 6.0, 0.0);
-		mTrack->buildTrack();
-		mTrack->buildTrackFloor(mTextures);
-		glTranslatef(0.0, -6.0, 0.0);
 		
+		//geometry renders
+		//mGeometry->drawCreature();
+		//mGeometry->drawCastle();
+		//glTranslatef(0.0f, -150.0f, 0.0f);
+		//mGeometry->drawTerrain();
+		//glTranslatef(0.0f, 150.0f, 0.0f);
+
+		mTrack->buildTrack();
+		mTrack->buildTrackFloor(mTextures);		
 
 		mCar1->Display(mCar1->getCarX(), mCar1->getCarY(), mCar1->getCarZ());
 
 		mCar2->Display(mCar2->getCarX(), mCar2->getCarY(), mCar2->getCarZ());
 
 		mCar3->Display(mCar3->getCarX(), mCar3->getCarY(), mCar3->getCarZ());
+
+	glPopMatrix();
 		
+	glPushMatrix();
 		Collision::Point car1Centre(mCar1->getCarX(), mCar1->getCarY(), mCar1->getCarZ());
-		Collision::Point car1HalfWidth(5.375, 6.8, 6.8);
+		Collision::Point car1HalfWidth(11.5, 6.8, 11.5);
 		Collision::AABB car1AABB(car1Centre, car1HalfWidth);
 		
 		Collision::Point car2Centre(mCar2->getCarX(), mCar2->getCarY(), mCar2->getCarZ());
-		Collision::Point car2HalfWidth(5.375, 6.8, 6.8);
+		Collision::Point car2HalfWidth(11.5, 6.8, 11.5);
 		Collision::AABB car2AABB(car2Centre, car2HalfWidth);
 		
 		Collision::Point car3Centre(mCar3->getCarX(), mCar3->getCarY(), mCar3->getCarZ());
-		Collision::Point car3HalfWidth(5.375, 6.8, 6.8);
+		Collision::Point car3HalfWidth(11.5, 6.8, 11.5);
 		Collision::AABB car3AABB(car3Centre, car3HalfWidth);
 		
 		if (mCollision->checkCollision(car1AABB, car2AABB))
@@ -165,9 +159,29 @@ static void display()
 			mCar2->setSpeed(temp1);
 			mCar3->setSpeed(temp2);
 		}
-
 	glPopMatrix();
-	mLighting->UseShader();
+
+	if (mCamera->getFollow() == 1)
+	{
+		mCamera->followCart(mCar1);
+	}
+
+	if (mCamera->getFollow() == 2)
+	{
+		mCamera->followCart(mCar2);
+	}
+
+	if (mCamera->getFollow() == 3)
+	{
+		mCamera->followCart(mCar3);
+	}
+
+	if (follow == 1)
+	{
+		glLoadIdentity();
+		gluLookAt(0, -1, 0, -mCar1->getCarX(), -50, -mCar1->getCarZ(), 0.0, 1.0, 0.0);
+	}
+
 	glutSwapBuffers();		// Swap buffers
 	glutPostRedisplay();	// Display results
 	glFlush();				// Flush drawing routines
@@ -179,29 +193,17 @@ static void Reshape(int width, int height)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	gluPerspective(70.0, (GLfloat)width / (GLfloat)height, 0.05, 2000.0);
-	gluLookAt(0.0, 10.0, 15, 0.0, 10.0, 0, 0.0, 1.0, 0);
+	gluLookAt(0.0, 10.0, 150.0, 0.0, 10.0, 0.0, 0.0, 1.0, 0.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }
 
 void keyboardFunc(unsigned char key, int x, int y)
 {
+	mCamera->KeyInput(key, x, y);
 	switch (key) {
-	case 'i':
-	case 'I':
-		glLoadIdentity();
-		gluLookAt(0, 0, 2, 0, 0, 0, 0, 1, 0);
-		glutPostRedisplay();
-		break;
-	case 'x':
-	case 'X':
-		glRotatef(10., 1.0, 0.0, 0.0);
-		glutPostRedisplay();
-		break;
-	case 'y':
-	case 'Y':
-		glRotatef(30., 0.0, 1.0, 0.0);
-		glutPostRedisplay();
+	case '9':
+		follow = 1;
 		break;
 	case ESCAPE:
 		exit(0);

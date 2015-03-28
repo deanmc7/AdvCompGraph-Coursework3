@@ -7,8 +7,9 @@ Geometry::Geometry(void)
 
 void Geometry::Init(void)
 {
-	mCreature = mMeshLoader->Load("creature.obj");
-	mDesert = mMeshLoader->Load("desert.obj");
+	//mCreature = mMeshLoader->Load("creature.obj");
+	//mDesert = mMeshLoader->Load("desert.obj");
+	//mCastle = mMeshLoader->Load("castle.obj");
 }
 
 void Geometry::drawCreature(void)
@@ -19,4 +20,9 @@ void Geometry::drawCreature(void)
 void Geometry::drawTerrain(void)
 {
 	glCallList(this->mDesert);
+}
+
+void Geometry::drawCastle()
+{
+	glCallList(this->mCastle);
 }

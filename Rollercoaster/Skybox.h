@@ -11,6 +11,7 @@ class Skybox
 private:
 	Camera* pCamera;
 	Shaders mSkyboxShader;
+	GLuint vbo, vao;
 
 public:
 	Skybox(Camera* pCam);

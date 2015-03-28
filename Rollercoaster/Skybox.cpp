@@ -24,6 +24,7 @@ void Skybox::Render(Textures* texture)
 		gluLookAt(0, 0, 0,
 			pCamera->getX(), pCamera->getY(), pCamera->getZ(),
 			0, 1, 0);
+		glRotatef(pCamera->getAngle(), 0.0, 1.0, 0.0);
 
 		glPushAttrib(GL_ENABLE_BIT);
 		glEnable(GL_TEXTURE_2D);
@@ -41,13 +42,14 @@ void Skybox::Render(Textures* texture)
 		glUseProgram(mSkyboxShader);
 		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);
 			glTexCoord2f(0, 1);
-			glVertex3f(50.0f, -50.0f, -50.0f);
+			glVertex3f(200.0f, -200.0f, -200.0f);
 			glTexCoord2f(1, 1);
-			glVertex3f(-50.0f, -50.0f, -50.0f);
+			glVertex3f(-200.0f, -200.0f, -200.0f);
 			glTexCoord2f(1, 0);
-			glVertex3f(-50.0f, 50.0f, -50.0f);
+			glVertex3f(-200.0f, 200.0f, -200.0f);
 			glTexCoord2f(0, 0);
-			glVertex3f(50.0f, 50.0f, -50.0f);
+			glVertex3f(200.0f, 200.0f, -200.0f);
+		glUseProgram(0);
 		glEnd();
 
 		glBindTexture(GL_TEXTURE_2D, texture->getTexture(SKYBOX_LEFT));
@@ -55,13 +57,14 @@ void Skybox::Render(Textures* texture)
 		glUseProgram(mSkyboxShader);
 		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);
 			glTexCoord2f(0, 1);
-			glVertex3f(50.0f, -50.0f, 50.0f);
+			glVertex3f(200.0f, -200.0f, 200.0f);
 			glTexCoord2f(1, 1);
-			glVertex3f(50.0f, -50.0f, -50.0f);
+			glVertex3f(200.0f, -200.0f, -200.0f);
 			glTexCoord2f(1, 0);
-			glVertex3f(50.0f, 50.0f, -50.0f);
+			glVertex3f(200.0f, 200.0f, -200.0f);
 			glTexCoord2f(0, 0);
-			glVertex3f(50.0f, 50.0f, 50.0f);
+			glVertex3f(200.0f, 200.0f, 200.0f);
+		glUseProgram(0);
 		glEnd();
 
 		glBindTexture(GL_TEXTURE_2D, texture->getTexture(SKYBOX_BACK));
@@ -69,13 +72,14 @@ void Skybox::Render(Textures* texture)
 		glUseProgram(mSkyboxShader);
 		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);
 			glTexCoord2f(0, 1);
-			glVertex3f(-50.0f, -50.0f, 50.0f);
+			glVertex3f(-200.0f, -200.0f, 200.0f);
 			glTexCoord2f(1, 1);
-			glVertex3f(50.0f, -50.0f, 50.0f);
+			glVertex3f(200.0f, -200.0f, 200.0f);
 			glTexCoord2f(1, 0);
-			glVertex3f(50.0f, 50.0f, 50.0f);
+			glVertex3f(200.0f, 200.0f, 200.0f);
 			glTexCoord2f(0, 0);
-			glVertex3f(-50.0f, 50.0f, 50.0f);
+			glVertex3f(-200.0f, 200.0f, 200.0f);
+		glUseProgram(0);
 		glEnd();
 
 		glBindTexture(GL_TEXTURE_2D, texture->getTexture(SKYBOX_RIGHT));
@@ -83,13 +87,14 @@ void Skybox::Render(Textures* texture)
 		glUseProgram(mSkyboxShader);
 		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);
 			glTexCoord2f(0, 1);
-			glVertex3f(-50.0f, -50.0f, -50.0f);
+			glVertex3f(-200.0f, -200.0f, -200.0f);
 			glTexCoord2f(1, 1);
-			glVertex3f(-50.0f, -50.0f, 50.0f);
+			glVertex3f(-200.0f, -200.0f, 200.0f);
 			glTexCoord2f(1, 0);
-			glVertex3f(-50.0f, 50.0f, 50.0f);
+			glVertex3f(-200.0f, 200.0f, 200.0f);
 			glTexCoord2f(0, 0);
-			glVertex3f(-50.0f, 50.0f, -50.0f);
+			glVertex3f(-200.0f, 200.0f, -200.0f);
+		glUseProgram(0);
 		glEnd();
 
 		glBindTexture(GL_TEXTURE_2D, texture->getTexture(SKYBOX_TOP));
@@ -97,13 +102,13 @@ void Skybox::Render(Textures* texture)
 		glUseProgram(mSkyboxShader);
 		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);
 			glTexCoord2f(1, 1);
-			glVertex3f(-50.0f, 50.0f, -50.0f);
+			glVertex3f(-200.0f, 200.0f, -200.0f);
 			glTexCoord2f(1, 0);
-			glVertex3f(-50.0f, 50.0f, 50.0f);
+			glVertex3f(-200.0f, 200.0f, 200.0f);
 			glTexCoord2f(0, 0);
-			glVertex3f(50.0f, 50.0f, 50.0f);
+			glVertex3f(200.0f, 200.0f, 200.0f);
 			glTexCoord2f(0, 1);
-			glVertex3f(50.0f, 50.0f, -50.0f);
+			glVertex3f(200.0f, 200.0f, -200.0f);
 		glEnd();
 		glUseProgram(0);
 		glDisable(GL_TEXTURE_2D);

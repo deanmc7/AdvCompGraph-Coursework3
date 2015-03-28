@@ -24,6 +24,7 @@ private:
 	std::vector<vec2> uvs;
 	GLuint vertexBuffer;
 	GLuint uvBuffer;
+	GLfloat yaw;
 
 	int carMesh;
 
@@ -34,7 +35,7 @@ private:
 	GLfloat carSpeed;
 	int tHills;
 	double carX, carY, carZ;
-	GLfloat cRadius;
+	GLfloat heightOffset;
 
 	float rad_to_deg;
 
@@ -45,17 +46,17 @@ private:
 	GLfloat	wheel_rotation;
 	float arcLength;   // used to calculate the Wheel rotation
 public:
-	Car(GLfloat carRadius, GLfloat time_step, GLfloat trackInnerRadius, GLfloat trackOuterRadius, GLfloat trackHeight, 
+	Car(GLfloat trackOffset, GLfloat time_step, GLfloat trackInnerRadius, GLfloat trackOuterRadius, GLfloat trackHeight,
 		GLfloat gravity, int numOfHills, GLfloat offset, GLfloat speed, Textures* mTexture);
 
-	~Car(void);
+	~Car();
 
-	void BuildCar(void);
-	void BuildWheel(void);
+	void BuildCar();
+	void BuildWheel();
 
-	void RenderCar(void);
+	void RenderCar();
 
-	void Init(void);
+	void Init();
 
 	void CalculatePos(float& position, float& velocity, float& acceleration);
 
@@ -63,12 +64,13 @@ public:
 
 	void swapSpeeds(GLfloat& car1Speed, GLfloat& car2Speed);
 
-	double getCarX(void);
-	double getCarY(void);
-	double getCarZ(void);
-	double getRad(void);
+	double getCarX();
+	double getCarY();
+	double getCarZ();
+	double getRad();
+	float getYaw();
 	void setSpeed(GLfloat value);
-	GLfloat getSpeed(void);
+	GLfloat getSpeed();
 };
 
 #endif //#ifndef __Car_h_
