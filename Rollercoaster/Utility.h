@@ -52,6 +52,10 @@
 #define CART_TEXTURE	8
 //#define WHEEL_TEXTURE	9
 
+#define FOG_EQUATION_LINEAR		0
+#define FOG_EQUATION_EXP		1
+#define FOG_EQUATION_EXP2		2
+
 #define ESZ(elem) (int)elem.size()
 
 typedef unsigned int uint;

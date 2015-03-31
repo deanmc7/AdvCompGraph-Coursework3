@@ -40,7 +40,7 @@ void Skybox::Render(Textures* texture)
 		glBindTexture(GL_TEXTURE_2D, texture->getTexture(SKYBOX_FRONT));
 		glBegin(GL_QUADS);
 		glUseProgram(mSkyboxShader);
-		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);
+//		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->getPos());
 			glTexCoord2f(0, 1);
 			glVertex3f(200.0f, -200.0f, -200.0f);
 			glTexCoord2f(1, 1);
@@ -55,7 +55,7 @@ void Skybox::Render(Textures* texture)
 		glBindTexture(GL_TEXTURE_2D, texture->getTexture(SKYBOX_LEFT));
 		glBegin(GL_QUADS);
 		glUseProgram(mSkyboxShader);
-		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);
+		//glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->getPos());
 			glTexCoord2f(0, 1);
 			glVertex3f(200.0f, -200.0f, 200.0f);
 			glTexCoord2f(1, 1);
@@ -70,7 +70,7 @@ void Skybox::Render(Textures* texture)
 		glBindTexture(GL_TEXTURE_2D, texture->getTexture(SKYBOX_BACK));
 		glBegin(GL_QUADS);
 		glUseProgram(mSkyboxShader);
-		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);
+		//glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->getPos());
 			glTexCoord2f(0, 1);
 			glVertex3f(-200.0f, -200.0f, 200.0f);
 			glTexCoord2f(1, 1);
@@ -85,7 +85,7 @@ void Skybox::Render(Textures* texture)
 		glBindTexture(GL_TEXTURE_2D, texture->getTexture(SKYBOX_RIGHT));
 		glBegin(GL_QUADS);
 		glUseProgram(mSkyboxShader);
-		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);
+		//glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->getPos());
 			glTexCoord2f(0, 1);
 			glVertex3f(-200.0f, -200.0f, -200.0f);
 			glTexCoord2f(1, 1);
@@ -100,7 +100,7 @@ void Skybox::Render(Textures* texture)
 		glBindTexture(GL_TEXTURE_2D, texture->getTexture(SKYBOX_TOP));
 		glBegin(GL_QUADS);
 		glUseProgram(mSkyboxShader);
-		glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->position);
+		//glUniform3fv(mSkyboxShader.UniformLocations[0], 1, &pCamera->getPos());
 			glTexCoord2f(1, 1);
 			glVertex3f(-200.0f, 200.0f, -200.0f);
 			glTexCoord2f(1, 0);

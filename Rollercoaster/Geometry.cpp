@@ -8,7 +8,7 @@ Geometry::Geometry(void)
 void Geometry::Init(void)
 {
 	//mCreature = mMeshLoader->Load("creature.obj");
-	//mDesert = mMeshLoader->Load("desert.obj");
+	mDesert = mMeshLoader->Load("desert.obj");
 	//mCastle = mMeshLoader->Load("castle.obj");
 }
 

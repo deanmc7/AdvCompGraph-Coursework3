@@ -10,9 +10,13 @@ class Camera
 private:
 	double camX, camY, camZ;
 	double startX, startY, startZ;
-	vec3 startPos;
 	double camAngle;
 	int follow;
+
+	glm::vec3 position;
+	glm::vec3 startPos;
+	glm::vec3 camView;
+	glm::vec3 camUp;
 public:
 	Camera();
 	Camera(double x, double y, double z, double angle);
@@ -30,9 +34,10 @@ public:
 	double getX();
 	double getY();
 	double getZ();
+	glm::vec3 getPos();
 	double getAngle();
+	glm::mat4 getLook();
 
-	vec3 position;
 };
 
 #endif //#ifndef __Camera_h_

@@ -112,6 +112,9 @@
   <ItemGroup>
     <None Include="diffuse.fs" />
     <None Include="diffuse.vs" />
+    <None Include="fog.fs" />
+    <None Include="shader.fs" />
+    <None Include="shader.vs" />
     <None Include="skybox.fs" />
     <None Include="skybox.vs" />
     <None Include="TextureFragmentShader.fs" />

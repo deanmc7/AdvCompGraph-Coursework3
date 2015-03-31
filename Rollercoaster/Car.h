@@ -25,6 +25,7 @@ private:
 	GLuint vertexBuffer;
 	GLuint uvBuffer;
 	GLfloat yaw;
+	GLfloat pitch;
 
 	int carMesh;
 

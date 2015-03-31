@@ -130,5 +130,14 @@
     <None Include="diffuse.vs">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="fog.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shader.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="shader.vs">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

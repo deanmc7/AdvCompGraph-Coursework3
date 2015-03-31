@@ -8,8 +8,10 @@ Camera::Camera()
 Camera::Camera(double x, double y, double z, double angle) 
 	: camX(x), camY(y), camZ(z), camAngle(angle), follow(0)
 {
-	position = vec3(camX, camY, camZ);
-	startPos= vec3(camX, camY, camZ);
+	position	= glm::vec3(camX, camY, camZ);
+	startPos	= glm::vec3(camX, camY, camZ);
+	camUp		= glm::vec3(0.0, 1.0, 0.0);
+	camView		= glm::vec3(0.0, 10.0, 0.0);
 }
 
 void Camera::Init()
@@ -183,12 +185,16 @@ void Camera::followCart(Car* cart)
 	position.x = cart->getCarX() + cos(90.0f) * (5.0f);
 	position.y = 10.0f;
 	position.z = cart->getCarZ() + cos(90.0f) * (5.0f);
-	gluLookAt(position.x, position.y, position.z, -cart->getCarX(), -cart->getCarY(), -cart->getCarX(), 0.0, 1.0, 0.0);
+	camView.x = -cart->getCarX();
+	camView.y = -cart->getCarY();
+	camView.z = -cart->getCarZ();
+	gluLookAt(position.x, position.y, position.z, camView.x, camView.y, camView.z, camUp.x, camUp.y, camUp.z);
 }
 
 void Camera::ResetPos()
 {
-	gluLookAt(startPos.x, startPos.y, startPos.z, -100.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+	camView = glm::vec3(-100.0, 0.0, 0.0);
+	gluLookAt(startPos.x, startPos.y, startPos.z, camView.x, camView.y, camView.z, camUp.x, camUp.y, camUp.z);
 }
 
 double Camera::getX()
@@ -206,7 +212,17 @@ double Camera::getZ()
 	return position.z;
 }
 
+glm::vec3 Camera::getPos()
+{
+	return position;
+}
+
 double Camera::getAngle()
 {
 	return camAngle;
+}
+
+glm::mat4 Camera::getLook()
+{
+	return glm::lookAt(position, camView, camUp);
 }

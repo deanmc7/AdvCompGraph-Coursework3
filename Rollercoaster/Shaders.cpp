@@ -1,6 +1,6 @@
 #include "Shaders.h"
 
-Shaders::Shaders() : vShader(0), fShader(0), needsValidating(GL_TRUE), UniformLocations(0), AttribLocations(0)
+Shaders::Shaders() : vShader(0), fShader(0), needsValidating(GL_TRUE), UniformLocations(0), AttribLocations(0), mLoaded(false)
 {
 }
 
@@ -82,25 +82,26 @@ GLuint Shaders::LoadShader(char* filename, GLuint type)
 
 	//return shaderText;
 	
-	GLuint Shader = glCreateShader(type);
+	mShader = glCreateShader(type);
 
-	glShaderSource(Shader, 1, (const char**)&shaderText, NULL);
+	glShaderSource(mShader, 1, (const char**)&shaderText, NULL);
 	delete[] shaderText;
-	glCompileShader(Shader);
+	glCompileShader(mShader);
 
 	GLint status;
-	glGetShaderiv(Shader, GL_COMPILE_STATUS, &status);
+	glGetShaderiv(mShader, GL_COMPILE_STATUS, &status);
 
 	if (status == GL_FALSE)
 	{
 		char log[MAX_LOG_SIZE];
 		glGetShaderInfoLog(fShader, MAX_LOG_SIZE, NULL, log);
 		std::cout << "Error loading shader" << log << std::endl;
-		glDeleteShader(Shader);
+		glDeleteShader(mShader);
 		return 0;
 	}
+	mLoaded = true;
 
-	return Shader;
+	return mShader;
 	/*
 	const GLchar* vStringPtr[1];
 	const GLchar* fStringPtr[1];
@@ -180,4 +181,156 @@ bool Shaders::CompileShader()
 		Sleep(5000);
 		exit(0);
 	}
+}
+
+bool Shaders::isLoaded()
+{
+	return mLoaded;
+}
+
+uint Shaders::getID()
+{
+	return mShader;
+}
+
+//SHADER PROGRAM
+
+ShaderProgram::ShaderProgram() : isLinked(false)
+{
+}
+
+void ShaderProgram::createProgram()
+{
+	mProgram = glCreateProgram();
+}
+
+bool ShaderProgram::addShader(Shaders* mShader)
+{
+	if (!mShader->isLoaded())
+		return false;
+
+	glAttachShader(mProgram, mShader->getID());
+	return true;
+}
+
+bool ShaderProgram::linkProgram()
+{
+	glLinkProgram(mProgram);
+	GLint linkStatus;
+	glGetProgramiv(mProgram, GL_LINK_STATUS, &linkStatus);
+	isLinked = linkStatus == GL_TRUE;
+	return isLinked;
+}
+
+void ShaderProgram::deleteProgram()
+{
+	if (!isLinked)
+		return;
+	isLinked = false;
+	glDeleteProgram(mProgram);
+}
+
+void ShaderProgram::useProgram()
+{
+	if (isLinked)
+		glUseProgram(mProgram);
+}
+
+uint ShaderProgram::getProgramID()
+{
+	return mProgram;
+}
+
+// Setting floats
+
+void ShaderProgram::setUniform(std::string sName, float* fValues, int iCount)
+{
+	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
+	glUniform1fv(iLoc, iCount, fValues);
+}
+
+void ShaderProgram::setUniform(std::string sName, const float fValue)
+{
+	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
+	glUniform1fv(iLoc, 1, &fValue);
+}
+
+// Setting vectors
+
+void ShaderProgram::setUniform(std::string sName, glm::vec2* vVectors, int iCount)
+{
+	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
+	glUniform2fv(iLoc, iCount, (GLfloat*)vVectors);
+}
+
+void ShaderProgram::setUniform(std::string sName, const glm::vec2 vVector)
+{
+	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
+	glUniform2fv(iLoc, 1, (GLfloat*)&vVector);
+}
+
+void ShaderProgram::setUniform(std::string sName, glm::vec3* vVectors, int iCount)
+{
+	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
+	glUniform3fv(iLoc, iCount, (GLfloat*)vVectors);
+}
+
+void ShaderProgram::setUniform(std::string sName, const glm::vec3 vVector)
+{
+	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
+	glUniform3fv(iLoc, 1, (GLfloat*)&vVector);
+}
+
+void ShaderProgram::setUniform(std::string sName, glm::vec4* vVectors, int iCount)
+{
+	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
+	glUniform4fv(iLoc, iCount, (GLfloat*)vVectors);
+}
+
+void ShaderProgram::setUniform(std::string sName, const glm::vec4 vVector)
+{
+	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
+	glUniform4fv(iLoc, 1, (GLfloat*)&vVector);
+}
+
+// Setting 3x3 matrices
+
+void ShaderProgram::setUniform(std::string sName, glm::mat3* mMatrices, int iCount)
+{
+	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
+	glUniformMatrix3fv(iLoc, iCount, FALSE, (GLfloat*)mMatrices);
+}
+
+void ShaderProgram::setUniform(std::string sName, const glm::mat3 mMatrix)
+{
+	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
+	glUniformMatrix3fv(iLoc, 1, FALSE, (GLfloat*)&mMatrix);
+}
+
+// Setting 4x4 matrices
+
+void ShaderProgram::setUniform(std::string sName, glm::mat4* mMatrices, int iCount)
+{
+	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
+	glUniformMatrix4fv(iLoc, iCount, FALSE, (GLfloat*)mMatrices);
+}
+
+void ShaderProgram::setUniform(std::string sName, const glm::mat4 mMatrix)
+{
+	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
+	glUniformMatrix4fv(iLoc, 1, FALSE, (GLfloat*)&mMatrix);
+}
+
+// Setting integers
+
+void ShaderProgram::setUniform(std::string sName, int* iValues, int iCount)
+{
+	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
+	glUniform1iv(iLoc, iCount, iValues);
+}
+
+void ShaderProgram::setUniform(std::string sName, const int iValue)
+{
+	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
+	glUniform1i(iLoc, iValue);
 }
