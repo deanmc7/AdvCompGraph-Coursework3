@@ -76,6 +76,7 @@ public:
 	// Setting integers
 	void setUniform(std::string sName, int* iValues, int iCount = 1);
 	void setUniform(std::string sName, const int iValue);
+	void setUniform(std::string sName, GLuint iValue);
 
 };
 

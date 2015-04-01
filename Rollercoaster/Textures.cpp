@@ -11,7 +11,7 @@ Textures::Textures()
 	this->textureFilenames[SKYBOX_BACK] = "skyboxBack.tga";
 	this->textureFilenames[DESERT_TEXTURE] = "desert.tga";
 	this->textureFilenames[CART_TEXTURE] = "cart.tga";
-	//this->textureFilenames[WHEEL_TEXTURE] = "wheel.tga";
+	this->textureFilenames[SUPPORT_TEXTURE] = "support.tga";
 }
 
 bool Textures::loadImage(char* textureName, int currentTexture)
@@ -66,4 +66,9 @@ void Textures::loadTextures(void)
 GLuint Textures::getTexture(int texture)
 {
 	return textures[texture];
+}
+
+GLuint* Textures::getCubeTexture(int texture)
+{
+	return &textures[texture];
 }

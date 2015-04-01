@@ -10,7 +10,7 @@ class Geometry
 {
 private:
 	Mesh*		mMeshLoader;
-	int mDesert, mCreature, mCastle;
+	int mDesert, mCreature, mCastle, mColumn;
 
 public:
 	Geometry(void);
@@ -18,8 +18,7 @@ public:
 	void Init(void);
 
 	void drawTerrain(void);
-	void drawCreature(void);
-	void drawCastle(void);
+	void drawColumn(void);
 };
 
 #endif //#ifndef __Geometry_h_

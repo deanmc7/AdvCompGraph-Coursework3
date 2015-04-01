@@ -40,7 +40,7 @@
 #define CAR2SPEED 1000.0f
 #define CAR3SPEED 200.0f
 
-#define NUM_OF_TEXTURES 9
+#define NUM_OF_TEXTURES 10
 #define FLOOR_TEXTURE	0
 #define TRACK_TEXTURE	1
 #define SKYBOX_TOP		2
@@ -50,7 +50,7 @@
 #define SKYBOX_BACK		6
 #define DESERT_TEXTURE	7
 #define CART_TEXTURE	8
-//#define WHEEL_TEXTURE	9
+#define SUPPORT_TEXTURE 9
 
 #define FOG_EQUATION_LINEAR		0
 #define FOG_EQUATION_EXP		1

@@ -60,6 +60,9 @@
     <ClCompile Include="Lighting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ClothSim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Geometry.h">
@@ -110,6 +113,9 @@
     <ClInclude Include="Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ClothSim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="skybox.fs">
@@ -130,13 +136,25 @@
     <None Include="diffuse.vs">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="fog.fs">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="shader.fs">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="shader.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="fog.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="fog.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="toon.fs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="toon.vs">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="blur.fs">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

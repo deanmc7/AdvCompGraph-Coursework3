@@ -19,6 +19,7 @@ public:
 	void loadTextures(void);
 
 	GLuint getTexture(int texture);
+	GLuint* getCubeTexture(int texture);
 };
 
 #endif //#ifndef __Textures_h_

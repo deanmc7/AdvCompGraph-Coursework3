@@ -8,6 +8,8 @@ Lighting::Lighting()
 	lightPos0[2] = 140.0f;
 	lightPos0[3] = 1.0f;
 
+	light1Pos = glm::vec3(140.0f, 250.0f, 140.0f);
+
 	lightPos1[0] = -140.0f;
 	lightPos1[1] = 250.0f;
 	lightPos1[2] = 140.0f;
@@ -109,4 +111,9 @@ void Lighting::ActivateLight(void)
 void Lighting::SetupLightDirection(void)
 {
 	glLightfv(GL_LIGHT0, GL_POSITION, lightDirection);
+}
+
+glm::vec3 Lighting::getLightOnePos()
+{
+	return light1Pos;
 }

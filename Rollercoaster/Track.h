@@ -8,7 +8,7 @@
 class Track
 {
 private:
-	GLuint sphere, track, trackFloor;
+	GLuint sphere, track, trackFloor, column;
 	GLfloat	trackHeight;
 	GLfloat trackInnerRadius;
 	GLfloat trackOuterRadius;

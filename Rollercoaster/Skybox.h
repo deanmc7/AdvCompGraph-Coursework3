@@ -11,13 +11,19 @@ class Skybox
 private:
 	Camera* pCamera;
 	Shaders mSkyboxShader;
-	GLuint vbo, vao;
+	ShaderProgram	mProgram;
+	GLuint vbo, vao, tex_cube;
+	Textures* pTexture;
 
 public:
-	Skybox(Camera* pCam);
+	Skybox(Camera* pCam, Textures* texture);
 
 	void Init();
 	void Render(Textures* texture);
+	void createCubeMap(GLuint* tex_cube);
+	bool LoadSide(GLuint texture, GLenum side_target, int fileName);
+
+	GLuint getCubeMap();
 };
 
 #endif //#ifndef __Skybox_h_

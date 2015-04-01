@@ -77,6 +77,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="ClothSim.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="Lighting.cpp" />
@@ -94,6 +95,7 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Car.h" />
+    <ClInclude Include="ClothSim.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="Keys.h" />
@@ -110,14 +112,18 @@
     <ClInclude Include="Wheel.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="blur.fs" />
     <None Include="diffuse.fs" />
     <None Include="diffuse.vs" />
     <None Include="fog.fs" />
+    <None Include="fog.vs" />
     <None Include="shader.fs" />
     <None Include="shader.vs" />
     <None Include="skybox.fs" />
     <None Include="skybox.vs" />
+    <None Include="toon.fs" />
     <None Include="TextureFragmentShader.fs" />
+    <None Include="toon.vs" />
     <None Include="TransformVertexShader.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

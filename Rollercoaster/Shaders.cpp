@@ -334,3 +334,9 @@ void ShaderProgram::setUniform(std::string sName, const int iValue)
 	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
 	glUniform1i(iLoc, iValue);
 }
+
+void ShaderProgram::setUniform(std::string sName, GLuint iValue)
+{
+	int iLoc = glGetUniformLocation(mProgram, sName.c_str());
+	glUniform1i(iLoc, iValue);
+}

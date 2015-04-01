@@ -14,20 +14,35 @@ void Track::buildTrack(void)
 
 	this->sphere = glGenLists(1);
 	this->track = glGenLists(2);
+	this->column = glGenLists(3);
 
 	glNewList(this->sphere, GL_COMPILE);
 	glColor3f(1.0, 0.0, 0.0);
 	glutSolidSphere(1, 20, 10);
 	glEndList();
 
+	glNewList(this->column, GL_COMPILE);
+	glColor3f(0.0, 0.0, 0.0);
+	glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+	glutSolidCylinder(1.0, 150.0, 50, 50);
+	glEndList();
+
 //	glNewList(this->track, GL_COMPILE);
 		for (x; x < 3.14; x += 0.005)
 		{
+			bool plant = false;
 			glPushMatrix();
 
 				glTranslatef(this->trackInnerRadius * cos(x), this->trackHeight * sin(numOfHills * x), this->trackInnerRadius * sin(x));
 
 				glCallList(this->sphere);
+				if (plant == true)
+				{
+					glCallList(this->column);
+					plant = false;
+				}
+				else
+					plant = true;
 
 			glPopMatrix();
 
@@ -36,6 +51,13 @@ void Track::buildTrack(void)
 				glTranslatef(this->trackOuterRadius * cos(x), this->trackHeight * sin(numOfHills * x), this->trackOuterRadius * sin(x));
 
 				glCallList(this->sphere);
+				if (plant == true)
+				{
+					glCallList(this->column);
+					plant = false;
+				}
+				else
+					plant = true;
 
 			glPopMatrix();
 		}

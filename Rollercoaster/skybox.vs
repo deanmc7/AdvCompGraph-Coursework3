@@ -1,9 +1,10 @@
-#version 120
+#version 400
 
-uniform vec3 CameraPosition;
+in vec3 vp;
+uniform mat4 P, V;
+out vec3 texcoords;
 
-void main()
-{
-	gl_TexCoord[0].stp = vec3(gl_Vertex.x, -gl_Vertex.yz);
-	gl_Position = gl_ModelViewProjectionMatrix * vec4(gl_Vertex.xyz + CameraPosition, 1.0);
+void main () {
+  texcoords = vp;
+  gl_Position = P * V * vec4 (vp, 1.0);
 }

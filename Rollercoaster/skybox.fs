@@ -1,8 +1,9 @@
-#version 120
+#version 400
 
-uniform samplerCube CubeMap;
+in vec3 texcoords;
+uniform samplerCube cube_texture;
+out vec4 frag_colour;
 
-void main()
-{
-	gl_FragColor = textureCube(CubeMap, gl_TexCoord[0].stp);
+void main () {
+  frag_colour = texture (cube_texture, texcoords);
 }

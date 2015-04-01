@@ -10,6 +10,7 @@ private:
 	Shaders	lightingShader;
 
 	GLfloat lightPos0[4];
+	glm::vec3 light1Pos;
 	GLfloat lightPos1[4];
 	GLfloat lightPos2[4];
 
@@ -34,6 +35,8 @@ public:
 	void SetFlatShadeModel(void);
 	void ActivateLight(void);
 	void SetupLightDirection(void);
+
+	glm::vec3 getLightOnePos();
 };
 
 #endif //#ifndef __Lighting_h_
